@@ -51,16 +51,13 @@ const Registertion = async (req, res) => {
         });
     } catch (error) {
         res.json({
-            error
+           status:"",
+           message:"Done"
         })
     }
 
 
 };
-
-
-
-
 
 //=========================================================Loging=========================================================================>
 
@@ -164,10 +161,10 @@ const UpdateUser = async (req, res, next) => {
 
 const GetOneuser = async (req, res) => {
     try {
-        const { userID } = req.params;
-        const user = await prisma.users.findFirst({
+        const { UserID } = req.params;
+        const user = await prisma.Users.findFirst({
             where: {
-                userID: +userID,
+                UserID: +UserID,
             },
         });
         if (!user) {
@@ -197,11 +194,11 @@ const GetOneuser = async (req, res) => {
 
 //=========================================================Delete Users===================================================================>
 const DeleteUser = async (req, res,) => {
-    const { userID } = req.params;
+    const { UserID } = req.params;
 
-    const USRER = await prisma.users.delete({
+    const USRER = await prisma.Users.delete({
         where: {
-            userID: parseInt(userID)
+            UserID: parseInt(UserID)
         },
     });
     res.json({

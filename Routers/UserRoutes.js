@@ -1,10 +1,11 @@
 const express = require("express")
-const  router = express.Router();
-const UserControl = require ('../controllers/Usercontrol')
+const router = express.Router();
+const UserControl = require('../controllers/Usercontrol')
 
 router.post('/new', UserControl.Registertion)
 router.get('/get', UserControl.Getallusers)
+router.get('/:UserID', UserControl.GetOneuser)
 router.put('/:UserID', UserControl.UpdateUser)
-
-
-module.exports=router
+router.post('/loging', UserControl.Login)
+router.delete('/:UserID', UserControl.DeleteUser)
+module.exports = router
