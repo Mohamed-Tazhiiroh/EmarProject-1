@@ -51,8 +51,8 @@ const Registertion = async (req, res) => {
         });
     } catch (error) {
         res.json({
-           status:"",
-           message:"Done"
+            status: "",
+            message: "Done"
         })
     }
 
@@ -98,7 +98,7 @@ const Login = async (req, res, next) => {
 
 
     } else {
-       console.log(error)
+        console.log(error)
     }
 }
 

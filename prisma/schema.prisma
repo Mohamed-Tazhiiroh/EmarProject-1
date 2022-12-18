@@ -55,8 +55,8 @@ model Category {
   type String
   images String
    //re
-   userID Int
-   user Users @relation(fields: [userID], references: [UserID])
+   CatID Int
+   user Users @relation(fields: [CatID], references: [UserID])
    pro products []
 }
 
