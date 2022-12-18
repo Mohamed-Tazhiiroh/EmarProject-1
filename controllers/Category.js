@@ -131,12 +131,12 @@ const GetallCategory = async (req, res) => {
 
 //==========================================================>>Deletecategory
 
-const Delete = async (req, res,) => {
+const Deletecategory = async (req, res,) => {
     const { cat_ID } = req.params;
 
-    const DeleteCate = prisma.category.delete({
+    const DeleteCate = prisma.Category.delete({
         where: {
-            cat_ID: +(cat_ID)
+            cat_ID:parseInt(cat_ID)
         },
     });
     res.json({
@@ -168,6 +168,6 @@ module.exports =
     CreateCategory,
     UpdateCategory,
     GetingOneData,
-    Delete,
+    Deletecategory,
     GetallCategory
 }
