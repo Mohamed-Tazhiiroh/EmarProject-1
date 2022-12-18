@@ -22,7 +22,9 @@ const CreateCategory = async (req, res) => {
         const NewCate = await prisma.Category.create({
             data: {
                 type: typ,
-                images: img
+                images: img,
+                CatID: req.Users
+
             },
         });
         res.json({
