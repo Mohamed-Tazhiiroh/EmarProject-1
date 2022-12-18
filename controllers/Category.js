@@ -93,14 +93,14 @@ const GetingOneData = async (req, res) => {
                 cat_ID: +cat_ID,
             },
         });
-        if(!Oneitem){
+        if (!Oneitem) {
             res.json({
-                status:"Error",
-                message:"Category is not Found In Database"
+                status: "Error",
+                message: "Category is not Found In Database"
             });
-        }else{
+        } else {
             res.json({
-                status:"Success",
+                status: "Success",
                 Oneitem
             });
         };
