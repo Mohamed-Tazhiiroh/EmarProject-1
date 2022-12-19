@@ -98,7 +98,7 @@ const GetOneCAte = async (req, res) => {
         if (!OneCt) {
             res.json({
                 status: "Erorr",
-                message: "user is not fount in Database Now"
+                message: "Category is not found in Database Now"
             });
         } else {
             res.json({
