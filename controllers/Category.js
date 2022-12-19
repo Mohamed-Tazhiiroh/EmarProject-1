@@ -87,29 +87,30 @@ const UpdateCategory = async (req, res, next) => {
 //==========================================================>>GetOneCategory
 //
 
-const GetingOneData = async (req, res) => {
+const GetOneCAte = async (req, res) => {
     try {
         const { cat_ID } = req.params;
-        const Oneitem = await prisma.Category.findFirst({
+        const OneCt = await prisma.Category.findFirst({
             where: {
                 cat_ID: +cat_ID,
             },
         });
-        if (!Oneitem) {
+        if (!OneCt) {
             res.json({
-                status: "Error",
-                message: "Category is not Found In Database"
+                status: "Erorr",
+                message: "user is not fount in Database Now"
             });
         } else {
             res.json({
                 status: "Success",
-                Oneitem
-            });
-        };
+                OneCt
+            })
+        }
     } catch (error) {
         console.log(error)
-    }
+    };
 }
+
 
 //==========================================================>>GetallCategory
 
@@ -131,23 +132,25 @@ const GetallCategory = async (req, res) => {
 
 //==========================================================>>Deletecategory
 
-const Deletecategory = async (req, res,) => {
-    const { cat_ID } = req.params;
 
-    const DeleteCate = prisma.Category.delete({
-        where: {
-            cat_ID:parseInt(cat_ID)
-        },
-    });
-    res.json({
-        status: "Success",
-        message: "Delete category",
-        DeleteCate
-    })
+const Deletecategry = async (req, res,) => {
+    try {
+        const { cat_ID } = req.params;
+
+        const Done = await prisma.Category.delete({
+            where: {
+                cat_ID: parseInt(cat_ID)
+            },
+        });
+        res.json({
+            status:"Success",
+            message:"Delete Category",
+            Done
+        })
+    } catch (error) {
+   console.log(error)
+    }
 }
-
-
-
 
 
 
@@ -167,7 +170,7 @@ module.exports =
 {
     CreateCategory,
     UpdateCategory,
-    GetingOneData,
-    Deletecategory,
+    GetOneCAte,
+    Deletecategry,
     GetallCategory
 }

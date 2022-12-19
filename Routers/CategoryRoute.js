@@ -6,8 +6,8 @@ const { protect } = require("../middleware/Auth");
 
 router.post('/new', protect, CateControle.CreateCategory)
 router.get("/Getall", CateControle.GetallCategory)
-router.get('/:Cat_ID', CateControle.GetingOneData)
+router.get('/:Cat_ID', CateControle.GetOneCAte)
 router.put('/:cat_ID', CateControle.UpdateCategory)
-router.delete('/:Cat_ID', CateControle.Deletecategory)
+router.delete('/:Cat_ID', CateControle.Deletecategry)
 
 module.exports = router
