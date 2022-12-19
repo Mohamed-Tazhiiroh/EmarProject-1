@@ -17,21 +17,21 @@ enum Roles {
 }
 
 model Users {
-  UserID     Int      @id @default(autoincrement())
+  UserID     Int        @id @default(autoincrement())
   Firstname  String
   lastname   String
   u_email    String
   u_password String
   u_phone    String
   u_addres   String
-  joidat     DateTime @default(now())
-  Role Roles @default(user)
+  joidat     DateTime   @default(now())
+  Role       Roles      @default(user)
   //re
-  oder Oreds[]
-  cat Category []
-  pro products[]
-  reaviwes Reviews[]
-  cart cart []
+  oder       Oreds[]
+  cat        Category[]
+  pro        products[]
+  reaviwes   Reviews[]
+  cart       cart[]
 }
 
 enum mon {
@@ -40,58 +40,58 @@ enum mon {
 }
 
 model Oreds {
-  Ored_id Int @id @default(autoincrement())
+  Ored_id        Int    @id @default(autoincrement())
   Delivery_price Int
-  Item_price Int
-  total_price Int
-  address String
+  Item_price     Int
+  total_price    Int
+  address        String
   //Realtion
-  userId Int
-  users Users @relation(fields: [userId], references: [UserID])
+  userId         Int
+  users          Users  @relation(fields: [userId], references: [UserID])
 }
 
 model Category {
-  cat_ID Int @id @default(autoincrement())
-  type String
+  cat_ID Int        @id @default(autoincrement())
+  type   String
   images String
-   //re
-   CatID Int
-   user Users @relation(fields: [CatID], references: [UserID])
-   pro products []
+  //re
+  CatID  Int
+  user   Users      @relation(fields: [CatID], references: [UserID])
+  pro    products[]
 }
 
-model products{
-  Pro_id Int @id @default(autoincrement())
-  Pro_name String
-  Pro_price Int
-  Pro_desc String
+model products {
+  Pro_id     Int      @id @default(autoincrement())
+  Pro_name   String
+  Pro_price  Int
+  Pro_desc   String
   Pro_images String
-  Pro_disc Int
-  Pro_qtity Int
+  Pro_disc   Int
+  Pro_qtity  Int
   //re 
-  userid Int
-  cate_id Int
-  user Users @relation(fields: [userid], references: [UserID])
-  cate Category @relation(fields: [cate_id], references: [cat_ID])
-  car cart []
+  userid     Int
+  cate_id    Int
+  user       Users    @relation(fields: [userid], references: [UserID])
+  cate       Category @relation(fields: [cate_id], references: [cat_ID])
+  car        cart[]
 }
 
 model Reviews {
-  Rev_id Int @id @default( autoincrement())
-  rating Int
-  body String
-  user_id Int
-  pro_id Int
+  Rev_id   Int      @id @default(autoincrement())
+  rating   Int
+  body     String
+  user_id  Int
+  pro_id   Int
   createat DateTime @default(now())
-  user Users @relation(fields: [user_id], references: [UserID])
+  user     Users    @relation(fields: [user_id], references: [UserID])
 }
 
 model cart {
-  Cart_ID Int @id @default(autoincrement())
-  Quantity Int @default(0)
-  UserId Int
-  Pro_id Int
+  Cart_ID  Int      @id @default(autoincrement())
+  Quantity Int      @default(0)
+  UserId   Int
+  Pro_id   Int
   //re
- pro products @relation(fields: [Pro_id], references: [Pro_id])
- user Users @relation( fields: [UserId], references: [UserID])
+  pro      products @relation(fields: [Pro_id], references: [Pro_id])
+  user     Users    @relation(fields: [UserId], references: [UserID])
 }

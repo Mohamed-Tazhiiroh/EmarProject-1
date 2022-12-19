@@ -21,8 +21,6 @@ const CreateProduct = async (req, res) => {
                 Pro_disc: dis,
                 Pro_images: img,
                 Pro_qtity: qtity,
-                userid: req.Users,
-                cate_id: req.Users
             },
         });
         res.json({
@@ -34,10 +32,6 @@ const CreateProduct = async (req, res) => {
         console.log(error)
     }
 }
-
-
-
-
 
 //==================================================>> UpdateProduct
 
@@ -72,10 +66,10 @@ const UpdateProducts = async (req, res, next) => {
                 Pro_name: name,
                 Pro_price: price,
                 Pro_desc: des,
+                Pro_images: img,
                 Pro_disc: dis,
-                Pro_images:img,
                 Pro_qtity: qtity
-                
+
             },
         });
         res.status(200).json({
@@ -84,14 +78,75 @@ const UpdateProducts = async (req, res, next) => {
             Produc
         })
     } catch (error) {
-       console.log(error)
+        console.log(error)
+    }
+};
+
+//==================================================>> GetoneProduct
+
+const GetoneProdut = async (req, res) => {
+    try {
+        const { Pro_id } = req.params;
+        const PRODUCT = await prisma.products.findFirst({
+            where: {
+                Pro_id: +Pro_id,
+            },
+        });
+        if (!PRODUCT) {
+            res.json({
+                status: "Erorr",
+                message: "Product is not Found in Database"
+            });
+        } else {
+            res.json({
+                status: "Success",
+                PRODUCT
+            })
+        }
+    } catch (error) {
+        res.json({
+            Error
+        });
+    };
+}
+
+//===================================================>>GetAllpro
+const Getallproduct = async (req, res) => {
+    try {
+        const PRO = await prisma.products.findMany();
+        res.json({
+            PRO
+        });
+    } catch (error) {
+        res.json({
+            status: "Error",
+            message: "Data is not Found"
+        });
     }
 };
 
 
+//====================================================>>Deleteproduct
 
+const Deletepro = async (req, res,) => {
+    const { Pro_id } = req.params;
+
+    const Pro = await prisma.products.delete({
+        where: {
+            Pro_id: parseInt(Pro_id)
+        },
+    });
+    res.json({
+        status: "Success",
+        message: "product  Delete SuccessFull!",
+        Pro
+    })
+}
 
 module.exports = {
     CreateProduct,
-    UpdateProducts
+    UpdateProducts,
+    GetoneProdut,
+    Getallproduct,
+    Deletepro
 }
