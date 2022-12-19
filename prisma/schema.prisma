@@ -72,7 +72,7 @@ model products {
   userid     Int
   cate_id    Int
   user       Users    @relation(fields: [userid], references: [UserID])
-  cate       Category @relation(fields: [cate_id], references: [cat_ID])
+  category   Category @relation(fields: [cate_id], references: [cat_ID])
   car        cart[]
 }
 

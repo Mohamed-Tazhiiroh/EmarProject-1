@@ -38,11 +38,11 @@ const Registertion = async (req, res) => {
                 u_addres: address
             },
         });
-        res.json({
-            status: "Success",
-            message: "Sucessfully save",
-            Newuser
-        })
+        // res.json({
+        //     status: "Success",
+        //     message: "Sucessfully save",
+        //     Newuser
+        // })
         const token = generatetToken(Newuser.UserID)
         res.json({
             user: { ...Newuser },
@@ -99,6 +99,10 @@ const Login = async (req, res, next) => {
 
     } else {
         console.log(error)
+       res.json({
+        status:"error",
+        message:" oh "
+       })
     }
 }
 

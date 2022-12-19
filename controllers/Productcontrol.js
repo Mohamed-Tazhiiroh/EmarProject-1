@@ -18,9 +18,10 @@ const CreateProduct = async (req, res) => {
                 Pro_name: name,
                 Pro_price: price,
                 Pro_desc: des,
-                Pro_disc: dis,
+                Pro_disc: dis, 
                 Pro_images: img,
                 Pro_qtity: qtity,
+                user: req.Users
             },
         });
         res.json({
