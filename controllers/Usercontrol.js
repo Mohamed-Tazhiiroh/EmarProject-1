@@ -76,6 +76,12 @@ const Login = async (req, res, next) => {
         where: {
             u_email: email
         },
+        // select: {
+        //     UserID: true,
+        //     email: true,
+        //     password: true,
+        //     Role: true
+        // }
     });
 
     if (!UserExisting) {
@@ -99,10 +105,10 @@ const Login = async (req, res, next) => {
 
     } else {
         console.log(error)
-       res.json({
-        status:"error",
-        message:" oh "
-       })
+        res.json({
+            status: "error",
+            message: " oh "
+        })
     }
 }
 
