@@ -126,21 +126,23 @@ const Getoneorders = async (req, res) => {
     };
 }
 
+
+
 //=========================================================================>>DeteleOrders
 
-const Deletecategry = async (req, res,) => {
+const deleteOders = async (req, res,) => {
     try {
-        const { cat_ID } = req.params;
+        const { Ored_id } = req.params;
 
-        const Done = await prisma.Category.delete({
+        const ordersdle = await prisma.Oreds.delete({
             where: {
-                cat_ID: parseInt(cat_ID)
+                Ored_id: parseInt(Ored_id)
             },
         });
         res.json({
             status: "Success",
-            message: "Delete Category",
-            Done
+            message: "Delete orders",
+            ordersdle
         })
     } catch (error) {
         console.log(error)
@@ -152,9 +154,12 @@ const Deletecategry = async (req, res,) => {
 
 
 
+
+
 module.exports = {
     CreateOders,
     UpdateOrders,
     Getallorders,
-    Getoneorders
+    Getoneorders,
+    deleteOders
 }

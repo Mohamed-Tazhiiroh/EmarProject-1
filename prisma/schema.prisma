@@ -75,6 +75,7 @@ model products {
   user       Users    @relation(fields: [userid], references: [UserID])
   category   Category @relation(fields: [cate_id], references: [cat_ID])
   car        cart[]
+  reviwe Reviews[]
 }
 
 model Reviews {
@@ -85,6 +86,7 @@ model Reviews {
   pro_id   Int
   createat DateTime @default(now())
   user     Users    @relation(fields: [user_id], references: [UserID])
+  product  products @relation(fields: [pro_id], references: [Pro_id])
 }
 
 model cart {
