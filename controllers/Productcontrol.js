@@ -18,11 +18,11 @@ const CreateProduct = async (req, res) => {
                 Pro_name: name,
                 Pro_price: price,
                 Pro_desc: des,
-                Pro_disc: dis, 
+                Pro_disc: dis,
                 Pro_images: img,
                 Pro_qtity: qtity,
                 user: req.Users,
-                cate_id: cate_id ? Number(cate_id): 1,
+                cate_id: cate_id ? Number(cate_id) : 1,
             },
         });
         res.json({
@@ -122,10 +122,10 @@ const Getallproduct = async (req, res) => {
     } catch (error) {
 
         console.log(error)
-        res.json({
-            status: "Error",
-            message: "Data is not Found"
-        });
+        // res.json({
+        //     status: "Error",
+        //     message: "Data is not Found"
+        // });
     }
 };
 

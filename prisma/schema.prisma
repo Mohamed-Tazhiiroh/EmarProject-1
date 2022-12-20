@@ -43,9 +43,10 @@ model Oreds {
   Ored_id        Int    @id @default(autoincrement())
   Delivery_price Int
   Item_price     Int
+  Item_name      String
   total_price    Int
   address        String
-  Role mon  @default(notpaid)
+  Role           mon    @default(notpaid)
   //Realtion
   userId         Int
   users          Users  @relation(fields: [userId], references: [UserID])
@@ -62,7 +63,7 @@ model Category {
 }
 
 model products {
-  Pro_id     Int      @id @default(autoincrement())
+  Pro_id     Int       @id @default(autoincrement())
   Pro_name   String
   Pro_price  Int
   Pro_desc   String
@@ -72,10 +73,10 @@ model products {
   //re 
   userid     Int
   cate_id    Int
-  user       Users    @relation(fields: [userid], references: [UserID])
-  category   Category @relation(fields: [cate_id], references: [cat_ID])
+  user       Users     @relation(fields: [userid], references: [UserID])
+  category   Category  @relation(fields: [cate_id], references: [cat_ID])
   car        cart[]
-  reviwe Reviews[]
+  reviwe     Reviews[]
 }
 
 model Reviews {
