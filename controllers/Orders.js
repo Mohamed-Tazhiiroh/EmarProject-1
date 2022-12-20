@@ -42,7 +42,7 @@ const UpdateOrders = async (req, res, next) => {
     try {
         const { D_price, Item_price, Total_price, Address } = req.body;
         const { Ored_id } = req.params
-        if (!D_price ||!Item_price ||!Total_price ||!Address) {
+        if (!D_price || !Item_price || !Total_price || !Address) {
             res.json({
                 status: "Erorr",
                 message: "please checking Data "
@@ -78,10 +78,7 @@ const UpdateOrders = async (req, res, next) => {
             updateOrders
         })
     } catch (error) {
-        res.json({
-            status: "Erorr",
-            message:"DOne"
-        });
+        console.log(error)
     }
 };
 
@@ -103,8 +100,61 @@ const Getallorders = async (req, res) => {
 };
 
 
-module.exports={
+//========================================================================>>GetoneOrders
+
+const Getoneorders = async (req, res) => {
+    try {
+        const { Ored_id } = req.params;
+        const OneOrder = await prisma.Oreds.findFirst({
+            where: {
+                Ored_id: +Ored_id,
+            },
+        });
+        if (!OneOrder) {
+            res.json({
+                status: "Erorr",
+                message: "Orders is not found in Database"
+            });
+        } else {
+            res.json({
+                status: "Success",
+                OneOrder
+            })
+        }
+    } catch (error) {
+        console.log(error)
+    };
+}
+
+//=========================================================================>>DeteleOrders
+
+const Deletecategry = async (req, res,) => {
+    try {
+        const { cat_ID } = req.params;
+
+        const Done = await prisma.Category.delete({
+            where: {
+                cat_ID: parseInt(cat_ID)
+            },
+        });
+        res.json({
+            status: "Success",
+            message: "Delete Category",
+            Done
+        })
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+
+
+
+
+
+module.exports = {
     CreateOders,
     UpdateOrders,
-    Getallorders
+    Getallorders,
+    Getoneorders
 }
