@@ -5,7 +5,7 @@ const prisma = new PrismaClient();
 //=================================================>>CreateProducts
 const CreateProduct = async (req, res) => {
     try {
-        const { name, price, des, dis, img, qtity, } = req.body;
+        const { name, price, des, dis, img, qtity, cate_id } = req.body;
         if (!name || !price || !des || !dis || !img || !qtity) {
             res.json({
                 status: "Error",
@@ -21,7 +21,8 @@ const CreateProduct = async (req, res) => {
                 Pro_disc: dis, 
                 Pro_images: img,
                 Pro_qtity: qtity,
-                user: req.Users
+                user: req.Users,
+                cate_id: cate_id ? Number(cate_id): 1,
             },
         });
         res.json({
@@ -119,6 +120,8 @@ const Getallproduct = async (req, res) => {
             PRO
         });
     } catch (error) {
+
+        console.log(error)
         res.json({
             status: "Error",
             message: "Data is not Found"
