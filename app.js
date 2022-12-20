@@ -8,9 +8,11 @@ const port = process.env.port || 4000
 const UserRouters = require("./Routers/UserRoutes")
 const CateGoryRouters = require('./Routers/CategoryRoute')
 const productRouters = require('./Routers/ProductRouter')
+const oders = require('./Routers/OderRoutes')
 app.use('/api/user', UserRouters)
 app.use('/api/Cg', CateGoryRouters)
 app.use('/api/pro', productRouters)
+app.use('/api/order', oders)
 
 
 

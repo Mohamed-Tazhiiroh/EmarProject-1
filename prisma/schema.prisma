@@ -45,6 +45,7 @@ model Oreds {
   Item_price     Int
   total_price    Int
   address        String
+  Role mon  @default(notpaid)
   //Realtion
   userId         Int
   users          Users  @relation(fields: [userId], references: [UserID])

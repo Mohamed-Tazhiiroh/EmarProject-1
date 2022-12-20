@@ -143,12 +143,12 @@ const Deletecategry = async (req, res,) => {
             },
         });
         res.json({
-            status:"Success",
-            message:"Delete Category",
+            status: "Success",
+            message: "Delete Category",
             Done
         })
     } catch (error) {
-   console.log(error)
+        console.log(error)
     }
 }
 
