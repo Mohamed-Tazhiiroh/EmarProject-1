@@ -5,8 +5,8 @@ const prisma = new PrismaClient();
 //=================================================>>CreateProducts
 const CreateProduct = async (req, res) => {
     try {
-        const { name, price, des, dis, img, qtity, cate_id } = req.body;
-        if (!name || !price || !des || !dis || !img || !qtity) {
+        const { name, price, des, dis, img, qtity, SubID } = req.body;
+        if (!name || !price || !des || !dis || !img || !qtity || !SubID) {
             res.json({
                 status: "Error",
                 message: "Plze Provider Data"
@@ -21,8 +21,9 @@ const CreateProduct = async (req, res) => {
                 Pro_disc: dis,
                 Pro_images: img,
                 Pro_qtity: qtity,
-                user: req.Users,
-                cate_id: cate_id ? Number(cate_id) : 1,
+                UserID: req.Users,
+                SubcategoryID: SubID
+
             },
         });
         res.json({
@@ -34,6 +35,8 @@ const CreateProduct = async (req, res) => {
         console.log(error)
     }
 }
+
+
 
 //==================================================>> UpdateProduct
 
@@ -128,7 +131,6 @@ const Getallproduct = async (req, res) => {
         // });
     }
 };
-
 
 //====================================================>>Deleteproduct
 
