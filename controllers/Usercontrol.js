@@ -112,10 +112,6 @@ const Login = async (req, res, next) => {
     }
 }
 
-
-
-
-
 //========================================================update ==========================================================================>
 
 const UpdateUser = async (req, res, next) => {
@@ -166,7 +162,6 @@ const UpdateUser = async (req, res, next) => {
     }
 };
 
-
 //=========================================================Get one user =================================================================>
 
 const GetOneuser = async (req, res) => {
@@ -195,8 +190,6 @@ const GetOneuser = async (req, res) => {
     };
 }
 
-
-
 //=========================================================Delete Users===================================================================>
 const DeleteUser = async (req, res,) => {
     const { UserID } = req.params;
@@ -213,12 +206,6 @@ const DeleteUser = async (req, res,) => {
     })
 }
 
-
-
-
-
-
-
 //=========================================================Geting Data====================================================================>
 const Getallusers = async (req, res) => {
     try {
@@ -233,10 +220,6 @@ const Getallusers = async (req, res) => {
         });
     }
 };
-
-
-
-
 
 
 
