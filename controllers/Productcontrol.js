@@ -21,8 +21,8 @@ const CreateProduct = async (req, res) => {
                 Pro_disc: dis,
                 Pro_images: img,
                 Pro_qtity: qtity,
-                UserID: req.Users,
-                SubcategoryID: SubID
+                SubcategoryID: SubID,
+                UserID: req.Users
 
             },
         });
