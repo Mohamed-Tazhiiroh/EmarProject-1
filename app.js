@@ -9,10 +9,12 @@ const UserRouters = require("./Routers/UserRoutes")
 const CateGoryRouters = require('./Routers/CategoryRoute')
 const productRouters = require('./Routers/ProductRouter')
 const oders = require('./Routers/OderRoutes')
+const SubcatE =require('./Routers/SubcategoryRouter')
 app.use('/api/user', UserRouters)
 app.use('/api/Cg', CateGoryRouters)
 app.use('/api/pro', productRouters)
 app.use('/api/order', oders)
+app.use('/api/Subcate', SubcatE)
 
 
 

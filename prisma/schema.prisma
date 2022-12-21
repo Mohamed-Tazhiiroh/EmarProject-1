@@ -53,17 +53,25 @@ model Oreds {
 }
 
 model Category {
-  cat_ID Int        @id @default(autoincrement())
+  cat_ID Int           @id @default(autoincrement())
   type   String
-  images String
   //re
-  CatID  Int
-  user   Users      @relation(fields: [CatID], references: [UserID])
-  pro    products[]
+  UserID  Int
+  user   Users         @relation(fields: [UserID], references: [UserID])
+  sub    SubCategory[]
+}
+
+model SubCategory {
+  SubID      Int        @id @default(autoincrement())
+  type       String
+  imase      String
+  CategoryID Int
+  category   Category   @relation(fields: [CategoryID], references: [cat_ID])
+  pro        products[]
 }
 
 model products {
-  Pro_id     Int       @id @default(autoincrement())
+  Pro_id     Int         @id @default(autoincrement())
   Pro_name   String
   Pro_price  Int
   Pro_desc   String
@@ -72,9 +80,9 @@ model products {
   Pro_qtity  Int
   //re 
   userid     Int
-  cate_id    Int
-  user       Users     @relation(fields: [userid], references: [UserID])
-  category   Category  @relation(fields: [cate_id], references: [cat_ID])
+  subCate    Int
+  user       Users       @relation(fields: [userid], references: [UserID])
+  Cat        SubCategory @relation(fields: [subCate], references: [SubID])
   car        cart[]
   reviwe     Reviews[]
 }

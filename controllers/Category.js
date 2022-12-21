@@ -7,10 +7,10 @@ const prisma = new PrismaClient();
 // =========================================================>CreateCategory
 const CreateCategory = async (req, res) => {
     try {
-        const { typ, img } = req.body;
+        const { typ, } = req.body;
 
 
-        if (!typ || !img) {
+        if (!typ) {
             res.json({
                 status: "Something is worng",
                 message: "please Checking Data"
@@ -22,8 +22,7 @@ const CreateCategory = async (req, res) => {
         const NewCate = await prisma.Category.create({
             data: {
                 type: typ,
-                images: img,
-                CatID: req.Users
+                UserID: req.Users
 
             },
         });
@@ -42,9 +41,9 @@ const CreateCategory = async (req, res) => {
 
 const UpdateCategory = async (req, res, next) => {
     try {
-        const { typ, img } = req.body;
+        const { typ } = req.body;
         const { cat_ID } = req.params
-        if (!typ || !img) {
+        if (!typ) {
             res.json({
                 status: "Erorr",
                 message: "please checking Data "
@@ -68,8 +67,7 @@ const UpdateCategory = async (req, res, next) => {
                 cat_ID: parseInt(cat_ID)
             },
             data: {
-                type: typ,
-                images: img,
+                type: typ
             },
         });
         res.status(200).json({
