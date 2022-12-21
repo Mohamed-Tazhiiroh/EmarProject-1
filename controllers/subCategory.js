@@ -75,8 +75,36 @@ const Updatesubcategory = async (req, res) => {
     }
 };
 
+//=========================================================>> GetoneSubcategory
+const Getonesubcategory = async (req, res) => {
+    try {
+        const { SubID } = req.params;
+        const subcate = await prisma.SubCategory.findFirst({
+            where: {
+                SubID: +SubID,
+            },
+        });
+        if (!subcate) {
+            res.json({
+                status: "Erorr",
+                message: "user is not fount in Database Now"
+            });
+        } else {
+            res.json({
+                status: "Success",
+                subcate
+            })
+        }
+    } catch (error) {
+        res.json({
+            Error
+        });
+    };
+}
+
 
 module.exports = {
     createsubcategory,
-    Updatesubcategory
+    Updatesubcategory,
+    Getonesubcategory
 }
