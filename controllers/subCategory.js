@@ -37,8 +37,7 @@ const createsubcategory = async (req, res) => {
 
 
 };
-
-//========================================================>>Updatesubcategory
+//=========================================================>>Updatesubcategory
 
 const Updatesubcategory = async (req, res) => {
 
@@ -71,7 +70,6 @@ const Updatesubcategory = async (req, res) => {
         console.log(error)
     }
 };
-
 //=========================================================>> GetoneSubcategory
 const Getonesubcategory = async (req, res) => {
     try {
@@ -98,7 +96,7 @@ const Getonesubcategory = async (req, res) => {
         });
     };
 }
-//==========================================================>>Deletesubcategory
+//=========================================================>>Deletesubcategory
 const Deletesubcatgory = async (req, res,) => {
     const { SubID } = req.params;
 
@@ -113,11 +111,24 @@ const Deletesubcatgory = async (req, res,) => {
         SubCATE
     })
 }
-
-
+//=========================================================>>Getallsubcategoty
+const Getallsubcategory = async (req, res) => {
+    try {
+        const Subcategoy = await prisma.SubCategory.findMany();
+        res.json({
+            Subcategoy
+        });
+    } catch (error) {
+        res.json({
+            status: "Error",
+            message: "Data is not Found"
+        });
+    }
+};
 module.exports = {
     createsubcategory,
     Updatesubcategory,
     Getonesubcategory,
-    Deletesubcatgory
+    Deletesubcatgory,
+    Getallsubcategory
 }
