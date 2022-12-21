@@ -111,12 +111,14 @@ const Deletesubcatgory = async (req, res,) => {
         SubCATE
     })
 }
+
+
 //=========================================================>>Getallsubcategoty
 const Getallsubcategory = async (req, res) => {
     try {
-        const Subcategoy = await prisma.SubCategory.findMany();
+        const getting = await prisma.SubCategory.findMany();
         res.json({
-            Subcategoy
+            getting
         });
     } catch (error) {
         res.json({
@@ -125,6 +127,18 @@ const Getallsubcategory = async (req, res) => {
         });
     }
 };
+
+
+
+
+
+
+
+
+
+
+
+
 module.exports = {
     createsubcategory,
     Updatesubcategory,
