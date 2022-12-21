@@ -2,7 +2,7 @@ const { PrismaClient } = require('@prisma/client')
 const prisma = new PrismaClient();
 
 
-//=================================================>>CreateProducts
+//=================================================>>CreateProductsj
 const CreateProduct = async (req, res) => {
     try {
         const { name, price, des, dis, img, qtity, SubID } = req.body;
