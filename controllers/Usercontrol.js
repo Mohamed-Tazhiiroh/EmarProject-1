@@ -197,11 +197,6 @@ const GetOneuser = async (req, res) => {
 
 
 
-
-
-
-
-
 //=========================================================Delete Users===================================================================>
 const DeleteUser = async (req, res,) => {
     const { UserID } = req.params;

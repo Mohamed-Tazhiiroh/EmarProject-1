@@ -32,10 +32,7 @@ const createsubcategory = async (req, res) => {
         })
 
     } catch (error) {
-        res.json({
-            status: "",
-            message: "Done"
-        })
+        console.log(error)
     }
 
 
@@ -87,7 +84,7 @@ const Getonesubcategory = async (req, res) => {
         if (!subcate) {
             res.json({
                 status: "Erorr",
-                message: "user is not fount in Database Now"
+                message: "subcategory is not fount in Database Now"
             });
         } else {
             res.json({
@@ -101,10 +98,26 @@ const Getonesubcategory = async (req, res) => {
         });
     };
 }
+//==========================================================>>Deletesubcategory
+const Deletesubcatgory = async (req, res,) => {
+    const { SubID } = req.params;
+
+    const SubCATE = await prisma.SubCategory.delete({
+        where: {
+            SubID: parseInt(SubID)
+        },
+    });
+    res.json({
+        status: "Success",
+        message: "subcategory Delete SuccessFull!",
+        SubCATE
+    })
+}
 
 
 module.exports = {
     createsubcategory,
     Updatesubcategory,
-    Getonesubcategory
+    Getonesubcategory,
+    Deletesubcatgory
 }
