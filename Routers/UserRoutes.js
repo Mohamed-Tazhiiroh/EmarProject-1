@@ -4,6 +4,7 @@ const UserControl = require('../controllers/Usercontrol')
 
 router.post('/new', UserControl.Registertion)
 router.get('/get', UserControl.Getallusers)
+// router.delete('/All', UserControl.DeleteAll)
 router.get('/:UserID', UserControl.GetOneuser)
 router.put('/:UserID', UserControl.UpdateUser)
 router.post('/loging', UserControl.Login)
