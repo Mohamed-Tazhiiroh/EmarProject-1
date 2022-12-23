@@ -8,4 +8,5 @@ router.get('/:UserID', UserControl.GetOneuser)
 router.put('/:UserID', UserControl.UpdateUser)
 router.post('/loging', UserControl.Login)
 router.delete('/:UserID', UserControl.DeleteUser)
+router.put('/role/:UserID', UserControl.UpdateRole)
 module.exports = router

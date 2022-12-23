@@ -1,3 +1,4 @@
+const { prisma } = require('@prisma/client');
 const jwt = require('jsonwebtoken')
 
 const protect = (req, res, next) => {
@@ -28,6 +29,23 @@ const protect = (req, res, next) => {
 
     next()
 }
+
+
+// const checkuser =await prisma.Users.find({
+//     where:{
+//         UserID: Deco.Users
+//     }
+// })
+
+// if(checkuser){
+//     req.Users = checkuser
+//     next();
+// }else{
+//     res.json({
+//         status:"Error",
+//         message:"You Are Not Allowed "
+//     })
+// }
 
 module.exports = {
     protect

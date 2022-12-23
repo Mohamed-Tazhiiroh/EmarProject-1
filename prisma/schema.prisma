@@ -71,20 +71,20 @@ model SubCategory {
 }
 
 model products {
-  Pro_id        Int         @id @default(autoincrement())
-  Pro_name      String
-  Pro_price     Int
-  Pro_desc      String
-  Pro_images    String
-  Pro_disc      Int
-  Pro_qtity     Int
+  Pro_id     Int         @id @default(autoincrement())
+  Pro_name   String
+  Pro_price  Int
+  Pro_desc   String
+  Pro_images String
+  Pro_disc   Int
+  Pro_qtity  Int
   //re 
-  userid        Int
-  SubcategoryID Int
-  user          Users       @relation(fields: [userid], references: [UserID])
-  Cat           SubCategory @relation(fields: [SubcategoryID], references: [SubID])
-  car           cart[]
-  reviwe        Reviews[]
+  UserID     Int
+  SubID      Int
+  user       Users       @relation(fields: [UserID], references: [UserID])
+  Cat        SubCategory @relation(fields: [SubID], references: [SubID])
+  car        cart[]
+  reviwe     Reviews[]
 }
 
 model Reviews {

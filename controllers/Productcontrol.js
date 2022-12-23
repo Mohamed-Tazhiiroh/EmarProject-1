@@ -21,7 +21,7 @@ const CreateProduct = async (req, res) => {
                 Pro_disc: dis,
                 Pro_images: img,
                 Pro_qtity: qtity,
-                SubcategoryID: SubID,
+                SubID: SubID,
                 UserID: req.Users
 
             },
@@ -38,7 +38,7 @@ const CreateProduct = async (req, res) => {
 
 
 
-//==================================================>> UpdateProduct
+//======================================================================>> UpdateProduct
 
 const UpdateProducts = async (req, res, next) => {
     try {
@@ -73,8 +73,8 @@ const UpdateProducts = async (req, res, next) => {
                 Pro_desc: des,
                 Pro_images: img,
                 Pro_disc: dis,
-                Pro_qtity: qtity
-
+                Pro_qtity: qtity,
+                UserID: req.Users
             },
         });
         res.status(200).json({
@@ -87,7 +87,7 @@ const UpdateProducts = async (req, res, next) => {
     }
 };
 
-//==================================================>> GetoneProduct
+//==========================================================================>> GetoneProduct
 
 const GetoneProdut = async (req, res) => {
     try {
@@ -115,22 +115,43 @@ const GetoneProdut = async (req, res) => {
     };
 }
 
-//===================================================>>GetAllpro
-const Getallproduct = async (req, res) => {
-    try {
-        const PRO = await prisma.products.findMany();
-        res.json({
-            PRO
-        });
-    } catch (error) {
 
-        console.log(error)
-        // res.json({
-        //     status: "Error",
-        //     message: "Data is not Found"
-        // });
+//==============================================================================>>
+// const Getallproduct = async (req, res) => {
+//     try {
+//         const Allproducts = await prisma.products.findMany();
+//         res.json({
+//             Allproducts
+//         });
+//     } catch (error) {
+//         console.log(error)
+//         res.json({
+//             status: "Error",
+//             message: "Data is not Found"
+//         });
+//     }
+// };
+
+const GetAll = async (req, res) => {
+    try {
+        const Allpro = await prisma.products.findMany();
+
+        res.json({
+            status: "Success",
+            message: "AllProducts",
+            Allpro
+        })
+    } catch (error) {
+           res.jso
+           ({
+            status: "error",
+            message:"there is an error"
+           });
     }
 };
+
+
+
 
 //====================================================>>Deleteproduct
 
@@ -153,6 +174,6 @@ module.exports = {
     CreateProduct,
     UpdateProducts,
     GetoneProdut,
-    Getallproduct,
-    Deletepro
+    GetAll,
+   Deletepro
 }

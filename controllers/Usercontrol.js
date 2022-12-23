@@ -222,6 +222,38 @@ const Getallusers = async (req, res) => {
 };
 
 
+//=======================================================================================================================================>>
+const UpdateRole = async (req, res,) => {
+    try {
+        const { UserID, Role } = req.body;
+        if (!Role) {
+            res.json(
+                {
+                    status: "Error",
+                    message: "Fadlan Ku dar Role ka || plze add to role"
+                })
+            return;
+        }
+
+        const UpdateRoles = await prisma.Users.update({
+            where: {
+                UserID
+            },
+
+            data: {
+                Role: Role
+            }
+        });
+        res.json({
+            status: "Success",
+            message: "Updated Role Successfuly",
+            UpdateRoles
+        })
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 
 //=========================================================Exports=======================================================================>
 
@@ -231,5 +263,6 @@ module.exports = {
     Getallusers,
     GetOneuser,
     DeleteUser,
-    UpdateUser
+    UpdateUser,
+    UpdateRole
 }
