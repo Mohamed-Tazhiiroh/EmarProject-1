@@ -24,7 +24,7 @@ const protect = (req, res, next) => {
         }
         return data;
     })
-  
+
     req.Users = Deco.Users;
 
     next()
