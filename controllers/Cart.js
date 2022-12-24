@@ -1,5 +1,6 @@
 const { PrismaClient } = require('@prisma/client')
 const prisma = new PrismaClient();
+
 //===========================================================>AddCarts
 export const AddCart = async (req, res) => {
     const { UserID } = req.User;
@@ -97,7 +98,7 @@ export const GetMycart = async (req, res) => {
 
 }
 
-//====================================================/=====>>DeleteAllCarts
+//====================================================/=====>>DeleteAllCarts==>> =>>
 
 export const DeleteAllCarts = async (req, res) => {
     try {
@@ -117,7 +118,7 @@ export const DeleteAllCarts = async (req, res) => {
 }
 
 
-//==========================================================>>DeleteItem
+//==========================================================>>DeleteItem  =>> ==>>
 
 export const DeleteItem = async (req, res) => {
     try {

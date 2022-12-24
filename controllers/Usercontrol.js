@@ -206,18 +206,6 @@ const DeleteUser = async (req, res,) => {
     })
 }
 //==========================================================DeleteAlllUsers===============================================================>
-// const DeleteAll = async (req, res) => {
-//     try {
-//         await prisma.Users.deleteMany();
-//         res.json({
-//             message: 'All posts were delete',
-//         });
-//     } catch (error) {
-//         console.log(error)
-//     }
-// };
-
-//=========================================================Geting Data====================================================================>
 const Getallusers = async (req, res) => {
     try {
         const USERS = await prisma.users.findMany();
@@ -230,7 +218,19 @@ const Getallusers = async (req, res) => {
             message: "Data is not Found"
         });
     }
-};
+};// const DeleteAll = async (req, res) => {
+//     try {
+//         await prisma.Users.deleteMany();
+//         res.json({
+//             message: 'All posts were delete',
+//         });
+//     } catch (error) {
+//         console.log(error)
+//     }
+// };
+
+//=========================================================Geting Data====================================================================>
+
 
 
 //=======================================================================================================================================>>

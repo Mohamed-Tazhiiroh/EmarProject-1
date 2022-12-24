@@ -117,36 +117,14 @@ const GetoneProdut = async (req, res) => {
 
 
 //==============================================================================>>
-// const Getallproduct = async (req, res) => {
-//     try {
-//         const Allproducts = await prisma.products.findMany();
-//         res.json({
-//             Allproducts
-//         });
-//     } catch (error) {
-//         console.log(error)
-//         res.json({
-//             status: "Error",
-//             message: "Data is not Found"
-//         });
-//     }
-// };
-
-const GetAll = async (req, res) => {
+const Getallproducts = async (req, res) => {
     try {
-        const Allpro = await prisma.products.findMany();
-
+        const GetAllproducts = await prisma.products.findMany();
         res.json({
-            status: "Success",
-            message: "AllProducts",
-            Allpro
-        })
+            GetAllproducts
+        });
     } catch (error) {
-           res.jso
-           ({
-            status: "error",
-            message:"there is an error"
-           });
+        console.log(error);
     }
 };
 
@@ -174,6 +152,6 @@ module.exports = {
     CreateProduct,
     UpdateProducts,
     GetoneProdut,
-    GetAll,
-   Deletepro
+    Getallproducts,
+    Deletepro
 }

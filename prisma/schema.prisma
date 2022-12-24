@@ -40,18 +40,17 @@ enum mon {
 }
 
 model Oreds {
-  Ored_id        Int    @id @default(autoincrement())
+  Ored_id        Int       @id @default(autoincrement())
   Delivery_price Int
   Item_price     Int
   Item_name      String
+  Item_quantity Int 
   total_price    Int
   address        String
-  Role           mon    @default(notpaid)
+  Role           mon       @default(notpaid)
   //Realtion
   userId         Int
-  Cart_ID        Int
-  users          Users  @relation(fields: [userId], references: [UserID])
-  cart           cart   @relation(fields: [Cart_ID], references: [Cart_ID])
+  users          Users     @relation(fields: [userId], references: [UserID])
 }
 
 model Category {
@@ -92,7 +91,7 @@ model products {
 model Reviews {
   Rev_id   Int      @id @default(autoincrement())
   rating   Int
-  body     String
+  body     String?
   user_id  Int
   pro_id   Int
   createat DateTime @default(now())
@@ -108,5 +107,4 @@ model cart {
   //re
   pro      products @relation(fields: [Pro_id], references: [Pro_id])
   user     Users    @relation(fields: [UserId], references: [UserID])
-  order    Oreds[]
 }

@@ -4,9 +4,9 @@ const prisma = new PrismaClient();
 //====================================================================>>CreateOrders
 const CreateOders = async (req, res, next) => {
     try {
-        const { D_price, Item_price, Total_price, Address, itemname } = req.body;
+        const { D_price, Item_price, Total_price, Address, itemname, qtity } = req.body;
 
-        if (!D_price || !Item_price || !Total_price || !Address || !itemname) {
+        if (!D_price || !Item_price || !Total_price || !Address || !itemname || !qtity) {
             res.json({
                 status: "Error",
                 message: "Fadlan iska Dhamaystir Xogta"
@@ -21,6 +21,7 @@ const CreateOders = async (req, res, next) => {
                 total_price: Total_price,
                 address: Address,
                 Item_name: itemname,
+                Item_quantity: qtity,
                 userId: req.Users
             },
         });
@@ -41,9 +42,9 @@ const CreateOders = async (req, res, next) => {
 //====================================================================>>UpdateOders
 const UpdateOrders = async (req, res, next) => {
     try {
-        const { D_price, Item_price, Total_price, Address, itemname } = req.body;
+        const { D_price, Item_price, Total_price, Address, itemname, qtity } = req.body;
         const { Ored_id } = req.params
-        if (!D_price || !Item_price || !Total_price || !Address || !itemname) {
+        if (!D_price || !Item_price || !Total_price || !Address || !itemname || !qtity) {
             res.json({
                 status: "Erorr",
                 message: "please checking Data "
@@ -71,7 +72,8 @@ const UpdateOrders = async (req, res, next) => {
                 Item_price: Item_price,
                 total_price: Total_price,
                 address: Address,
-                Item_name: itemname
+                Item_name: itemname,
+                Item_quantity: qtity
             },
         });
         res.status(200).json({
