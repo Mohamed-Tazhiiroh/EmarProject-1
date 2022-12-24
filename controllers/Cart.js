@@ -75,21 +75,64 @@ export const AddCart = async (req, res) => {
 
 
 //===========================================================>GetmyCart
-const { UserID } = req.User;
-try {
-    const Mycart = await prisma.cart.findMany({
-        where: {
-            UserID: UserID
-        },
-        include: {
-            products: true
-        },
-    });
-    res.json({
-        success: true,
-        Mycart
-    })
-} catch (error) {
-    console.log(error);
+export const GetMycart = async (req, res) => {
+    const { UserID } = req.User;
+    try {
+        const Mycart = await prisma.cart.findMany({
+            where: {
+                UserID: UserID
+            },
+            include: {
+                products: true
+            },
+        });
+        res.json({
+            success: true,
+            Mycart
+        })
+    } catch (error) {
+        console.log(error);
 
+    }
+
+}
+
+//====================================================/=====>>DeleteAllCarts
+
+export const DeleteAllCarts = async (req, res) => {
+    try {
+        const { UserID } = req.User;
+        const DeleCarts = await prisma.cart.deleteMany({
+            where: {
+                UserID: UserID
+            },
+        });
+        res.json({
+            reset: true,
+            DeleCarts
+        })
+    } catch (error) {
+
+    }
+}
+
+
+//==========================================================>>DeleteItem
+
+export const DeleteItem = async (req, res) => {
+    try {
+        const { UserID } = req.User;
+        const { Cart_ID } = req.body;
+        const delcart = await prisma.cart.delete({
+            where: {
+                id: Cart_ID,
+            },
+        });
+        res.json({
+            delete: true,
+            update: true
+        })
+    } catch (error) {
+        console.log(error)
+    }
 }
