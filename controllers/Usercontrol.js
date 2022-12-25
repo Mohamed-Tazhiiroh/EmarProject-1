@@ -35,7 +35,8 @@ const Registertion = async (req, res) => {
                 u_email: email,
                 u_password: Hidepassword,
                 u_phone: phone,
-                u_addres: address
+                u_addres: address,
+                Role: email === "cabdiraxmaanxikam190gmail.com" ? "supperadmin" : "user"
             },
         });
         // res.json({
@@ -50,10 +51,7 @@ const Registertion = async (req, res) => {
             status: "Success",
         });
     } catch (error) {
-        res.json({
-            status: "",
-            message: "Done"
-        })
+        console.log(error)
     }
 
 
@@ -112,13 +110,17 @@ const Login = async (req, res, next) => {
     }
 }
 
+
+
+
+
 //========================================================update ==========================================================================>
 
 const UpdateUser = async (req, res, next) => {
     try {
-        const { fname, lname, email, password, phone, address } = req.body;
+        const { fname, lname, address } = req.body;
         const { UserID } = req.params
-        if (!fname || !lname || !email || !password || !phone || !address) {
+        if (!fname || !lname || !address) {
             res.json({
                 status: "Erorr",
                 message: "please checking Data "
@@ -144,9 +146,6 @@ const UpdateUser = async (req, res, next) => {
             data: {
                 Firstname: fname,
                 lastname: lname,
-                u_email: email,
-                u_password: password,
-                u_phone: phone,
                 u_addres: address
             },
         });
@@ -156,11 +155,11 @@ const UpdateUser = async (req, res, next) => {
             updateusers
         })
     } catch (error) {
-        res.json({
-            status: "Erorr",
-        });
+        console.log(error)
     }
 };
+
+
 
 //=========================================================Get one user =================================================================>
 
@@ -209,9 +208,9 @@ const DeleteUser = async (req, res,) => {
 //==========================================================DeleteAlllUsers===============================================================>
 const Getallusers = async (req, res) => {
     try {
-        const USERs = await prisma.users.findMany();
+        const Users = await prisma.users.findMany();
         res.json({
-            USERs
+            Users
         });
     } catch (error) {
         res.json({

@@ -51,6 +51,8 @@ model Oreds {
 
   //Realtion
   userId Int
+  Cart_ID Int
+  cart cart @relation(fields: [Cart_ID], references: [Cart_ID])
   users  Users @relation(fields: [userId], references: [UserID])
 }
 
@@ -108,4 +110,5 @@ model cart {
   //re
   pro      products @relation(fields: [Pro_id], references: [Pro_id])
   user     Users    @relation(fields: [UserId], references: [UserID])
+  order Oreds []
 }

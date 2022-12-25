@@ -30,7 +30,7 @@ CREATE TABLE "Oreds" (
     "address" TEXT NOT NULL,
     "Role" "mon" NOT NULL DEFAULT 'notpaid',
     "userId" INTEGER NOT NULL,
-    "CartID" INTEGER NOT NULL,
+    "Cart_ID" INTEGER NOT NULL,
 
     CONSTRAINT "Oreds_pkey" PRIMARY KEY ("Ored_id")
 );
@@ -110,7 +110,7 @@ CREATE UNIQUE INDEX "SubCategory_Sub_name_key" ON "SubCategory"("Sub_name");
 CREATE UNIQUE INDEX "products_Pro_name_key" ON "products"("Pro_name");
 
 -- AddForeignKey
-ALTER TABLE "Oreds" ADD CONSTRAINT "Oreds_CartID_fkey" FOREIGN KEY ("CartID") REFERENCES "cart"("Cart_ID") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "Oreds" ADD CONSTRAINT "Oreds_Cart_ID_fkey" FOREIGN KEY ("Cart_ID") REFERENCES "cart"("Cart_ID") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Oreds" ADD CONSTRAINT "Oreds_userId_fkey" FOREIGN KEY ("userId") REFERENCES "Users"("UserID") ON DELETE RESTRICT ON UPDATE CASCADE;

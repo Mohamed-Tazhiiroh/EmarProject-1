@@ -4,9 +4,9 @@ const prisma = new PrismaClient();
 //====================================================================>>CreateOrders
 const CreateOders = async (req, res, next) => {
     try {
-        const { D_price, Item_price, Total_price, Address, itemname, qtity } = req.body;
+        const { D_price, Item_price, Total_price, Address, itemname, qtity, Cart_ID, UserID } = req.body;
 
-        if (!D_price || !Item_price || !Total_price || !Address || !itemname || !qtity) {
+        if (!D_price || !Item_price || !Total_price || !Address || !itemname || !qtity || !Cart_ID || !UserID) {
             res.json({
                 status: "Error",
                 message: "Fadlan iska Dhamaystir Xogta"
@@ -15,15 +15,13 @@ const CreateOders = async (req, res, next) => {
         };
 
 
-
-
-        if (req.Users.Role !== "Admin") {
-            res.json({
-                status: "Error",
-                message: "You are not allowed"
-            })
-            return;
-        }
+        // if (req.Users.Role !== "Admin"  ) {
+        //     res.json({
+        //         status: "Error",
+        //         message: "You are not allowed"
+        //     })
+        //     return;
+        // }
 
 
 
@@ -36,8 +34,13 @@ const CreateOders = async (req, res, next) => {
                 address: Address,
                 Item_name: itemname,
                 Item_quantity: qtity,
-                UserID: req.Users.UserID
+                Cart_ID: Cart_ID,
+                UserID: UserID
             },
+            include: {
+                users: true
+            }
+
         });
 
         res.json({
