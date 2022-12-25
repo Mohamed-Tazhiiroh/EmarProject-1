@@ -1,7 +1,8 @@
-const { prisma } = require('@prisma/client');
+const { PrismaClient } = require('@prisma/client');
+const prisma = new PrismaClient();
 const jwt = require('jsonwebtoken')
 
-const protect = (req, res, next) => {
+const protect = async (req, res, next) => {
     const token = req.headers.authorization?.split(' ')[1]
 
     console.log(req.headers.authorization)
@@ -25,27 +26,28 @@ const protect = (req, res, next) => {
         return data;
     })
 
-    req.Users = Deco.Users;
+    // req.Users = Deco.Users;
 
-    next()
+    // next()
+    const checkuser = await prisma.Users.findFirst({
+        where: {
+            UserID: Deco.Users
+        }
+    })
+
+    if (checkuser) {
+        req.Users = checkuser
+        next();
+    } else {
+        res.json({
+            status: "Error",
+            message: "You Are Not Allowed "
+        })
+    }
 }
 
 
-// const checkuser =await prisma.Users.find({
-//     where:{
-//         UserID: Deco.Users
-//     }
-// })
 
-// if(checkuser){
-//     req.Users = checkuser
-//     next();
-// }else{
-//     res.json({
-//         status:"Error",
-//         message:"You Are Not Allowed "
-//     })
-// }
 
 module.exports = {
     protect

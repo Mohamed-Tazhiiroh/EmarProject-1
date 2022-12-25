@@ -205,12 +205,13 @@ const DeleteUser = async (req, res,) => {
         USRER
     })
 }
+
 //==========================================================DeleteAlllUsers===============================================================>
 const Getallusers = async (req, res) => {
     try {
-        const USERS = await prisma.users.findMany();
+        const USERs = await prisma.users.findMany();
         res.json({
-            USERS
+            USERs
         });
     } catch (error) {
         res.json({
@@ -218,7 +219,9 @@ const Getallusers = async (req, res) => {
             message: "Data is not Found"
         });
     }
-};// const DeleteAll = async (req, res) => {
+};
+
+// const DeleteAll = async (req, res) => {
 //     try {
 //         await prisma.Users.deleteMany();
 //         res.json({
@@ -253,6 +256,7 @@ const UpdateRole = async (req, res,) => {
 
             data: {
                 Role: Role
+
             }
         });
         res.json({

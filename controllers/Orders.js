@@ -14,6 +14,20 @@ const CreateOders = async (req, res, next) => {
             return;
         };
 
+
+
+
+        if (req.Users.Role !== "Admin") {
+            res.json({
+                status: "Error",
+                message: "You are not allowed"
+            })
+            return;
+        }
+
+
+
+
         const NewOders = await prisma.Oreds.create({
             data: {
                 Delivery_price: D_price,
@@ -22,7 +36,7 @@ const CreateOders = async (req, res, next) => {
                 address: Address,
                 Item_name: itemname,
                 Item_quantity: qtity,
-                userId: req.Users
+                UserID: req.Users.UserID
             },
         });
 

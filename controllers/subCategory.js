@@ -6,10 +6,10 @@ const prisma = new PrismaClient();
 //========================================================>>subcategory
 const createsubcategory = async (req, res) => {
     try {
-        const { typ, img, CAtID } = req.body;
+        const { sub_name, img, CAtID } = req.body;
 
 
-        if (!typ || !img || !CAtID) {
+        if (!sub_name || !img || !CAtID) {
             res.json({
                 status: "Something is worng",
                 message: "please Checking Data"
@@ -20,10 +20,15 @@ const createsubcategory = async (req, res) => {
 
         const NewSubcategory = await prisma.SubCategory.create({
             data: {
-                type: typ,
+                Sub_name: sub_name,
                 imase: img,
                 CategoryID: CAtID
             },
+
+            include: {
+                category: true
+            }
+
         });
         res.json({
             status: "Success",
@@ -44,7 +49,7 @@ const createsubcategory = async (req, res) => {
 const Updatesubcategory = async (req, res) => {
 
     try {
-        const { typ, img, } = req.body;
+        const { sub_name, img, } = req.body;
         if (!typ || !img) {
             res.json({
                 status: "error",
@@ -58,7 +63,7 @@ const Updatesubcategory = async (req, res) => {
                 SubID: Number(SubID),
             },
             data: {
-                type: typ,
+                Sub_name: sub_name,
                 imase: img,
             },
         });

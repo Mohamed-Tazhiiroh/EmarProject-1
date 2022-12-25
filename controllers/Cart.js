@@ -1,139 +1,142 @@
 const { PrismaClient } = require('@prisma/client')
 const prisma = new PrismaClient();
 
-//===========================================================>AddCarts
-export const AddCart = async (req, res) => {
-    const { UserID } = req.User;
-    const { Pro_id } = req.body;
+
+//=========================================================================>>Create Carts
+const createcart = async (req, res) => {
+    const { productID, userid, qty } = req.body;
+
     try {
-        const product = await prisma.findfirst({
-            where: {
-                Pro_id: Pro_id,
+        const newcart = await prisma.cart.create({
+            data: {
+                Pro_id: productID,
+                Quantity: qty,
+                UserId: userid
             },
-        });
-        const Existingproduct = await prisma.cart.findFirst({
-            where: {
-                Pro_id: Pro_id,
-                UserID: UserID
-            },
-
-
             include: {
-                products: true
+                pro: true,
+                user: true,
             }
+        })
+        res.json({
+            newcart
+        })
+    } catch (error) {
+        res.json({
+            error
+        })
+    }
+}
 
-        });
-
-        if (Existingproduct) {
-            const UPdatepro = await prisma.cart.update({
-                where: {
-                    Cart_ID: Existingproduct.Cart_ID,
-                },
-                data: {
-                    qty: Existingproduct.qty === product.inStock
-                        ? Existingproduct.qty : Existingproduct.qty + 1,
-                },
-                include: {
-                    products: true
-                },
+//=========================================================================>>UpdateCarts
 
 
-            });
+const UpdateCarts = async (req, res, next) => {
+    try {
+        const { qty } = req.body;
+        const { Cart_ID } = req.params
+        if (!qty) {
             res.json({
-                UPdatepro,
-                productMax: UPdatepro.qty === product.inStock,
-                success: true
-            });
-
-
-
-        } else {
-            const NewItem = await prisma.cart.create({
-                data: {
-                    Pro_id,
-                    UserID
-                },
-                include: {
-                    products: true,
-                },
-            });
-
-            res.json({
-                success: true,
-                NewItem,
-
+                status: "Erorr",
+                message: "please checking Data "
             })
+            return;
+        }
+        const findcarts = await prisma.cart.findFirst({
+            where: {
+                Cart_ID: + Cart_ID,
+            }
+        });
+        if (!findcarts) {
+            res.json({
+                status: "Erorr",
+                message: "User Is not Found In Database"
+            })
+            return
+        }
+        const updatecarts = await prisma.cart.update({
+            where: {
+                Cart_ID: parseInt(Cart_ID)
+            },
+            data: {
+                Quantity: qty
+            },
+            include: {
+                pro: true,
+                user: true
+            }
+        });
+        res.status(200).json({
+            status: "Sucess",
+            message: "Update Sucessfully",
+            updatecarts
+        })
+    } catch (error) {
+        res.json({
+            status: "Erorr",
+        });
+    }
+};
 
+//===========================================================================>>GetOneCarts
+
+
+const Getonecarts = async (req, res) => {
+    try {
+        const { Cart_ID } = req.params;
+        const CartS = await prisma.cart.findFirst({
+            where: {
+                Cart_ID: +Cart_ID,
+            },
+        });
+        if (!CartS) {
+            res.json({
+                status: "Erorr",
+                message: "Cart is not fount in Database Now"
+            });
+        } else {
+            res.json({
+                status: "Success",
+                CartS
+            })
         }
     } catch (error) {
-        console.log(error)
         res.json({
-            status: "error",
-            message: "Maybe Mistake is Happeneding"
-        })
-    }
+            Error
+        });
+    };
 }
 
+//============================================================================>>Delete Carts
+const DeleteCarts = async (req, res,) => {
+    const { Cart_ID } = req.params;
 
-//===========================================================>GetmyCart
-export const GetMycart = async (req, res) => {
-    const { UserID } = req.User;
-    try {
-        const Mycart = await prisma.cart.findMany({
-            where: {
-                UserID: UserID
-            },
-            include: {
-                products: true
-            },
-        });
-        res.json({
-            success: true,
-            Mycart
-        })
-    } catch (error) {
-        console.log(error);
-
-    }
-
+    const CARTS = await prisma.cart.delete({
+        where: {
+            Cart_ID: parseInt(Cart_ID)
+        },
+    });
+    res.json({
+        status: "Success",
+        message: "Carts Delete SuccessFull!",
+        CARTS
+    })
 }
-
-//====================================================/=====>>DeleteAllCarts==>> =>>
-
-export const DeleteAllCarts = async (req, res) => {
+//=============================================================================>>Get Allcarts
+const GetallCarts = async (req, res) => {
     try {
-        const { UserID } = req.User;
-        const DeleCarts = await prisma.cart.deleteMany({
-            where: {
-                UserID: UserID
-            },
-        });
+        const Carting = await prisma.cart.findMany();
         res.json({
-            reset: true,
-            DeleCarts
-        })
-    } catch (error) {
-
-    }
-}
-
-
-//==========================================================>>DeleteItem  =>> ==>>
-
-export const DeleteItem = async (req, res) => {
-    try {
-        const { UserID } = req.User;
-        const { Cart_ID } = req.body;
-        const delcart = await prisma.cart.delete({
-            where: {
-                id: Cart_ID,
-            },
+            Carting
         });
-        res.json({
-            delete: true,
-            update: true
-        })
     } catch (error) {
         console.log(error)
     }
+};
+module.exports = {
+    createcart,
+    UpdateCarts,
+    Getonecarts,
+    DeleteCarts,
+    GetallCarts
 }

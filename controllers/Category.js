@@ -9,7 +9,6 @@ const CreateCategory = async (req, res) => {
     try {
         const { typ, } = req.body;
 
-
         if (!typ) {
             res.json({
                 status: "Something is worng",
@@ -19,12 +18,23 @@ const CreateCategory = async (req, res) => {
 
         }
 
+        if (req.Users.Role !== "Admin") {
+            res.json({
+                status: "Error",
+                message: "You are not allowed"
+            })
+            return;
+        }
+
+
         const NewCate = await prisma.Category.create({
             data: {
                 type: typ,
-                UserID: req.Users
-
+                UserID: req.Users.UserID
             },
+            include: {
+                user: true
+            }
         });
         res.json({
             status: "Success",

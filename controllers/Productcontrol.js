@@ -13,6 +13,17 @@ const CreateProduct = async (req, res) => {
             })
             return;
         }
+
+        
+        if (req.Users.Role !== "Admin") {
+            res.json({
+                status: "Error",
+                message: "You are not allowed"
+            })
+            return;
+        }
+
+
         const Newproduct = await prisma.products.create({
             data: {
                 Pro_name: name,
@@ -22,7 +33,7 @@ const CreateProduct = async (req, res) => {
                 Pro_images: img,
                 Pro_qtity: qtity,
                 SubID: SubID,
-                UserID: req.Users
+                UserID: req.Users.UserID
 
             },
         });
@@ -63,6 +74,15 @@ const UpdateProducts = async (req, res, next) => {
             });
             return
         }
+
+        if (req.Users.Role !== "Admin") {
+            res.json({
+                status: "Error",
+                message: "You are not allowed"
+            })
+            return;
+        }
+
         const Produc = await prisma.products.update({
             where: {
                 Pro_id: parseInt(Pro_id)
@@ -74,7 +94,7 @@ const UpdateProducts = async (req, res, next) => {
                 Pro_images: img,
                 Pro_disc: dis,
                 Pro_qtity: qtity,
-                UserID: req.Users
+                UserID: req.Users.UserID
             },
         });
         res.status(200).json({

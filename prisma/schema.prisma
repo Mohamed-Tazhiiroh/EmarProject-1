@@ -20,9 +20,9 @@ model Users {
   UserID     Int        @id @default(autoincrement())
   Firstname  String
   lastname   String
-  u_email    String
+  u_email    String     @unique
   u_password String
-  u_phone    String
+  u_phone    String     @unique
   u_addres   String
   joidat     DateTime   @default(now())
   Role       Roles      @default(user)
@@ -40,22 +40,23 @@ enum mon {
 }
 
 model Oreds {
-  Ored_id        Int       @id @default(autoincrement())
+  Ored_id        Int    @id @default(autoincrement())
   Delivery_price Int
   Item_price     Int
-  Item_name      String
-  Item_quantity Int 
+  Item_name      String @unique
+  Item_quantity  Int
   total_price    Int
   address        String
-  Role           mon       @default(notpaid)
+  Role           mon    @default(notpaid)
+
   //Realtion
-  userId         Int
-  users          Users     @relation(fields: [userId], references: [UserID])
+  userId Int
+  users  Users @relation(fields: [userId], references: [UserID])
 }
 
 model Category {
   cat_ID Int           @id @default(autoincrement())
-  type   String
+  type   String        @unique
   //re
   UserID Int
   user   Users         @relation(fields: [UserID], references: [UserID])
@@ -64,7 +65,7 @@ model Category {
 
 model SubCategory {
   SubID      Int        @id @default(autoincrement())
-  type       String
+  Sub_name   String     @unique
   imase      String
   CategoryID Int
   category   Category   @relation(fields: [CategoryID], references: [cat_ID])
@@ -73,7 +74,7 @@ model SubCategory {
 
 model products {
   Pro_id     Int         @id @default(autoincrement())
-  Pro_name   String
+  Pro_name   String      @unique
   Pro_price  Int
   Pro_desc   String
   Pro_images String
