@@ -25,12 +25,12 @@ const CreateOders = async (req, res, next) => {
                 address: Address,
                 Item_name: itemname,
                 Item_quantity: qtity,
-                cart: Cart_ID.Cart_ID,
-                users: users.UserID
+                Cart_ID: Cart_ID,
+                userId: UserID
             },
             include: {
                 users: true,
-                cart : true
+                cart: true
             }
 
         });
