@@ -1,6 +1,8 @@
 const { PrismaClient } = require('@prisma/client')
 const prisma = new PrismaClient();
 
+
+
 //====================================================================>>CreateOrders
 const CreateOders = async (req, res, next) => {
     try {
@@ -15,17 +17,6 @@ const CreateOders = async (req, res, next) => {
         };
 
 
-        // if (req.Users.Role !== "Admin"  ) {
-        //     res.json({
-        //         status: "Error",
-        //         message: "You are not allowed"
-        //     })
-        //     return;
-        // }
-
-
-
-
         const NewOders = await prisma.Oreds.create({
             data: {
                 Delivery_price: D_price,
@@ -34,11 +25,12 @@ const CreateOders = async (req, res, next) => {
                 address: Address,
                 Item_name: itemname,
                 Item_quantity: qtity,
-                Cart_ID: Cart_ID,
-                UserID: UserID
+                cart: Cart_ID.Cart_ID,
+                users: users.UserID
             },
             include: {
-                users: true
+                users: true,
+                cart : true
             }
 
         });
