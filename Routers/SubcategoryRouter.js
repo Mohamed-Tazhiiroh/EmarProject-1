@@ -1,11 +1,12 @@
 const express = require("express")
 const router = express.Router();
-const subcat = require('../controllers/subCategory')
+const subcat = require('../controllers/subCategory');
+const { protect } = require("../middleware/Auth");
 
-router.post('/new', subcat.createsubcategory)
+router.post('/new', protect, subcat.createsubcategory)
 router.get('/Getall', subcat.Getallsubcategory)
 router.put('/:SubID', subcat.Updatesubcategory)
 router.get('/:SubID', subcat.Getonesubcategory)
-router.delete('/:SubID',subcat.Deletesubcatgory)
+router.delete('/:SubID', subcat.Deletesubcatgory)
 
 module.exports = router

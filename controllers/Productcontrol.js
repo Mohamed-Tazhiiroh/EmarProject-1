@@ -14,7 +14,7 @@ const CreateProduct = async (req, res) => {
             return;
         }
 
-        
+
         if (req.Users.Role !== "Admin") {
             res.json({
                 status: "Error",
@@ -34,8 +34,11 @@ const CreateProduct = async (req, res) => {
                 Pro_qtity: qtity,
                 SubID: SubID,
                 UserID: req.Users.UserID
-
             },
+            include: {
+                Cat: true,
+                user: true
+            }
         });
         res.json({
             status: "Success",

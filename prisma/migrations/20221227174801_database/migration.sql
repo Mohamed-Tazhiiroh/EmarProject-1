@@ -50,6 +50,7 @@ CREATE TABLE "SubCategory" (
     "Sub_name" TEXT NOT NULL,
     "imase" TEXT NOT NULL,
     "CategoryID" INTEGER NOT NULL,
+    "UserID" INTEGER NOT NULL,
 
     CONSTRAINT "SubCategory_pkey" PRIMARY KEY ("SubID")
 );
@@ -120,6 +121,9 @@ ALTER TABLE "Category" ADD CONSTRAINT "Category_UserID_fkey" FOREIGN KEY ("UserI
 
 -- AddForeignKey
 ALTER TABLE "SubCategory" ADD CONSTRAINT "SubCategory_CategoryID_fkey" FOREIGN KEY ("CategoryID") REFERENCES "Category"("cat_ID") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "SubCategory" ADD CONSTRAINT "SubCategory_UserID_fkey" FOREIGN KEY ("UserID") REFERENCES "Users"("UserID") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "products" ADD CONSTRAINT "products_UserID_fkey" FOREIGN KEY ("UserID") REFERENCES "Users"("UserID") ON DELETE RESTRICT ON UPDATE CASCADE;

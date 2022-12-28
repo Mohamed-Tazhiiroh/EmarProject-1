@@ -18,15 +18,29 @@ const createsubcategory = async (req, res) => {
 
         }
 
+
+        if (req.Users.Role !== "Admin") {
+            res.json({
+                status: "Error",
+                message: "You are not allowed"
+            })
+            return;
+        }
+
+
+
         const NewSubcategory = await prisma.SubCategory.create({
             data: {
                 Sub_name: sub_name,
                 imase: img,
-                CategoryID: CAtID
+                CategoryID: CAtID,
+                UserID: req.Users.UserID
             },
 
             include: {
-                category: true
+                category: true,
+                users: true
+
             }
 
         });
@@ -37,6 +51,7 @@ const createsubcategory = async (req, res) => {
         })
 
     } catch (error) {
+        console.log(error)
         res.json({
             error
         })
