@@ -24,6 +24,8 @@ const CreateProduct = async (req, res) => {
         }
 
 
+        
+
         const Newproduct = await prisma.products.create({
             data: {
                 Pro_name: name,

@@ -78,12 +78,23 @@ const UpdateCategory = async (req, res, next) => {
             })
             return
         }
+
+
+        if (req.Users.Role !== "Admin") {
+            res.json({
+                status: "Error",
+                message: "You are not allowed"
+            })
+            return;
+        }
+
         const updateusers = await prisma.Category.update({
             where: {
                 cat_ID: parseInt(cat_ID)
             },
             data: {
-                type: typ
+                type: typ,
+                UserID: req.Users.UserID
             },
         });
         res.status(200).json({
