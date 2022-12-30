@@ -248,14 +248,28 @@ const UpdateRole = async (req, res,) => {
             return;
         }
 
+
+
+
+        if (req.Users.Role !== " supperadmin") {
+            res.json({
+                status: "Error",
+                message: "You are not allowed"
+            })
+            return;
+        }
+
+
+
+
         const UpdateRoles = await prisma.Users.update({
             where: {
                 UserID
             },
 
             data: {
-                Role: Role
-
+                Role: Role,
+                UserID: req.Users.UserID
             }
         });
         res.json({

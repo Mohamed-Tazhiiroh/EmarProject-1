@@ -103,6 +103,8 @@ const UpdateCategory = async (req, res, next) => {
             updateusers
         })
     } catch (error) {
+
+        console.log(error)
         res.json({
             status: "Erorr",
         });

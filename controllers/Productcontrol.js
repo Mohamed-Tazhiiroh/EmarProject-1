@@ -24,7 +24,7 @@ const CreateProduct = async (req, res) => {
         }
 
 
-        
+
 
         const Newproduct = await prisma.products.create({
             data: {
@@ -80,6 +80,9 @@ const UpdateProducts = async (req, res, next) => {
             return
         }
 
+
+
+
         if (req.Users.Role !== "Admin") {
             res.json({
                 status: "Error",
@@ -87,6 +90,8 @@ const UpdateProducts = async (req, res, next) => {
             })
             return;
         }
+
+
 
         const Produc = await prisma.products.update({
             where: {
