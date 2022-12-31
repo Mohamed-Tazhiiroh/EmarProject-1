@@ -247,13 +247,6 @@ const UpdateRole = async (req, res,) => {
                 })
 
 
-            if (req.Users.Role !== " supperadmin") {
-                res.json({
-                    status: "Error",
-                    message: "You are not allowed"
-                })
-
-            }
             return;
 
 
@@ -261,6 +254,13 @@ const UpdateRole = async (req, res,) => {
 
 
 
+        if (req.Users.Role !== " supperadmin") {
+            res.json({
+                status: "Error",
+                message: "You are not allowed"
+            })
+            return;
+        }
 
 
 
