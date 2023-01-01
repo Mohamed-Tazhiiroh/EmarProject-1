@@ -54,11 +54,31 @@ const CreateProduct = async (req, res) => {
 
 
 
+
+
+
+
+
+
+
 //======================================================================>> UpdateProduct
 
 const UpdateProducts = async (req, res, next) => {
+    const { name, price, des, dis, img, qtity, } = req.body;
     try {
-        const { name, price, des, dis, img, qtity, } = req.body;
+
+
+
+        if (req.Users.Role !== "Admin") {
+            res.json({
+                status: "Error",
+                message: "You are not allowed"
+            })
+            return;
+        }
+
+
+
         const { Pro_id } = req.params
         if (!name || !price || !des || !dis || !img || !qtity) {
             res.json({
@@ -82,14 +102,6 @@ const UpdateProducts = async (req, res, next) => {
 
 
 
-
-        if (req.Users.Role !== "Admin") {
-            res.json({
-                status: "Error",
-                message: "You are not allowed"
-            })
-            return;
-        }
 
 
 
