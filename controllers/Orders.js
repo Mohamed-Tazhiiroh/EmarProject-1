@@ -51,9 +51,9 @@ const CreateOders = async (req, res, next) => {
 //====================================================================>>UpdateOders
 const UpdateOrders = async (req, res, next) => {
     try {
-        const { D_price, Item_price, Total_price, Address, itemname, qtity } = req.body;
+        const { Address, itemname, qtity } = req.body;
         const { Ored_id } = req.params
-        if (!D_price || !Item_price || !Total_price || !Address || !itemname || !qtity) {
+        if ( !Address || !itemname || !qtity) {
             res.json({
                 status: "Erorr",
                 message: "please checking Data "
@@ -77,9 +77,7 @@ const UpdateOrders = async (req, res, next) => {
                 Ored_id: parseInt(Ored_id)
             },
             data: {
-                Delivery_price: D_price,
-                Item_price: Item_price,
-                total_price: Total_price,
+            
                 address: Address,
                 Item_name: itemname,
                 Item_quantity: qtity

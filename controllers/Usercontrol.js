@@ -254,7 +254,7 @@ const UpdateRole = async (req, res,) => {
 
 
 
-        if (req.Users.Role !== " supperadmin") {
+        if (req.Users.Role !== " Admin") {
             res.json({
                 status: "Error",
                 message: "You are not allowed"

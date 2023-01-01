@@ -56,28 +56,8 @@ const CreateCategory = async (req, res) => {
 // =========================================================>UpdateCategory
 
 const UpdateCategory = async (req, res, next) => {
+    const { typ } = req.body;
     try {
-        const { typ } = req.body;
-        const { cat_ID } = req.params
-        if (!typ) {
-            res.json({
-                status: "Erorr",
-                message: "please checking Data "
-            })
-            return;
-        }
-        const FINDUser = await prisma.Category.findFirst({
-            where: {
-                cat_ID: + cat_ID,
-            }
-        });
-        if (!FINDUser) {
-            res.json({
-                status: "Erorr",
-                message: "Category Is not Found In Database"
-            })
-            return
-        }
 
 
         if (req.Users.Role !== "Admin") {
@@ -87,6 +67,32 @@ const UpdateCategory = async (req, res, next) => {
             })
             return;
         }
+
+
+
+        const { cat_ID } = req.params
+        if (!typ) {
+            res.json({
+                status: "Erorr",
+                message: "please checking Data "
+            })
+            return;
+        }
+        const FindCategory = await prisma.Category.findFirst({
+            where: {
+                cat_ID: + cat_ID,
+            }
+        });
+        if (!FindCategory) {
+            res.json({
+                status: "Erorr",
+                message: "Category Is not Found In Database"
+            })
+            return
+        }
+
+
+      
 
         const updateusers = await prisma.Category.update({
             where: {
@@ -161,7 +167,17 @@ const GetallCategory = async (req, res) => {
 
 
 const Deletecategry = async (req, res,) => {
+    
     try {
+
+        if (req.Users.Role !== "Admin") {
+            res.json({
+                status: "Error",
+                message: "You are not allowed"
+            })
+            return;
+        }
+        
         const { cat_ID } = req.params;
 
         const Done = await prisma.Category.delete({
