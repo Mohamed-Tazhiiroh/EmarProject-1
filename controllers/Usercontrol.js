@@ -240,13 +240,15 @@ const UpdateRole = async (req, res,) => {
     try {
         const { UserID, Role } = req.body;
 
-        // if (req.Users.Role !== "Admin") {
-        //     res.json({
-        //         status: "Error",
-        //         message: "You are not allowed"
-        //     })
-        //     return;
-        // }
+        // console.log(req.Users)
+
+        if (req.Users.Role !== "Admin") {
+            res.json({
+                status: "Error",
+                message: "You are not allowed"
+            })
+            return;
+        }
 
 
         if (!Role) {
