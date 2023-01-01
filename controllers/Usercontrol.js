@@ -240,7 +240,7 @@ const UpdateRole = async (req, res,) => {
     try {
         const { UserID, Role } = req.body;
 
-        // console.log(req.Users)
+        console.log(req.Users)
 
         if (req.Users.Role !== "Admin") {
             res.json({
@@ -272,7 +272,7 @@ const UpdateRole = async (req, res,) => {
 
             data: {
                 Role: Role,
-                // UserID: req.Users.UserID
+                UserID: req.Users.UserID
             }
         });
         res.json({
