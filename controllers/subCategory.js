@@ -59,13 +59,32 @@ const createsubcategory = async (req, res) => {
 
 
 };
+
+
+
+
+
+
 //=========================================================>>Updatesubcategory
 
 const Updatesubcategory = async (req, res) => {
 
+    const { sub_name, img, } = req.body;
+
     try {
-        const { sub_name, img, } = req.body;
-        if (!typ || !img) {
+
+
+        if (req.Users.Role !== "Admin") {
+            res.json({
+                status: "Error",
+                message: "You are not allowed"
+            })
+            return;
+        }
+
+
+
+        if (!sub_name || !img) {
             res.json({
                 status: "error",
                 message: "Please provider information"
@@ -80,6 +99,7 @@ const Updatesubcategory = async (req, res) => {
             data: {
                 Sub_name: sub_name,
                 imase: img,
+                UserID: req.Users.UserID
             },
         });
 
@@ -92,6 +112,11 @@ const Updatesubcategory = async (req, res) => {
         console.log(error)
     }
 };
+
+
+
+
+
 //=========================================================>> GetoneSubcategory
 const Getonesubcategory = async (req, res) => {
     try {

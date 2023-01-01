@@ -239,6 +239,16 @@ const Getallusers = async (req, res) => {
 const UpdateRole = async (req, res,) => {
     try {
         const { UserID, Role } = req.body;
+
+        // if (req.Users.Role !== "Admin") {
+        //     res.json({
+        //         status: "Error",
+        //         message: "You are not allowed"
+        //     })
+        //     return;
+        // }
+
+
         if (!Role) {
             res.json(
                 {
@@ -253,19 +263,6 @@ const UpdateRole = async (req, res,) => {
         }
 
 
-
-        if (req.Users.Role !== " Admin") {
-            res.json({
-                status: "Error",
-                message: "You are not allowed"
-            })
-            return;
-        }
-
-
-
-
-
         const UpdateRoles = await prisma.Users.update({
             where: {
                 UserID
@@ -273,7 +270,7 @@ const UpdateRole = async (req, res,) => {
 
             data: {
                 Role: Role,
-                UserID: req.Users.UserID
+                // UserID: req.Users.UserID
             }
         });
         res.json({

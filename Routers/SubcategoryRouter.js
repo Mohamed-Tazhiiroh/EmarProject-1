@@ -5,7 +5,7 @@ const { protect } = require("../middleware/Auth");
 
 router.post('/new', protect, subcat.createsubcategory)
 router.get('/Getall', subcat.Getallsubcategory)
-router.put('/:SubID', subcat.Updatesubcategory)
+router.put('/:SubID', protect, subcat.Updatesubcategory)
 router.get('/:SubID', subcat.Getonesubcategory)
 router.delete('/:SubID', subcat.Deletesubcatgory)
 
