@@ -166,9 +166,13 @@ const GetallCategory = async (req, res) => {
 //==========================================================>>Deletecategory
 
 
+
+
 const Deletecategry = async (req, res,) => {
     
     try {
+
+
 
         if (req.Users.Role !== "Admin") {
             res.json({
@@ -178,6 +182,8 @@ const Deletecategry = async (req, res,) => {
             return;
         }
         
+
+
         const { cat_ID } = req.params;
 
         const Done = await prisma.Category.delete({

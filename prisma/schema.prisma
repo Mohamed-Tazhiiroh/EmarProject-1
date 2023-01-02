@@ -114,10 +114,10 @@ model Reviews {
   Rev_id   Int      @id @default(autoincrement())
   rating   Int
   body     String?
-  user_id  Int
+  UserID  Int
   pro_id   Int
   createat DateTime @default(now())
-  user     Users    @relation(fields: [user_id], references: [UserID])
+  user     Users    @relation(fields: [UserID], references: [UserID])
   product  products @relation(fields: [pro_id], references: [Pro_id])
 }
 
