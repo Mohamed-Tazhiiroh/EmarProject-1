@@ -18,6 +18,43 @@ const Registertion = async (req, res) => {
         const { fname, lname, email, password, phone, address } = req.body;
 
 
+        //=============================================================>>Checkuser
+
+        const CheckUser = await prisma.Users.findFirst({
+            where: {
+                u_email: email,
+
+            },
+        });
+
+
+        if (CheckUser) {
+            res.json({
+                status: "Error",
+                message: "Email Is Exist Already"
+            })
+            return
+        }
+
+        // ===========================================================>>Check Number
+
+        const CheckPhone = await prisma.Users.findFirst({
+            where: {
+                u_phone: phone
+            },
+        });
+
+        if (CheckPhone) {
+            res.json({
+                status: "Error",
+                message: "The phone Number Is already Exist"
+            })
+            return
+        }
+
+
+
+
         if (!fname || !lname || !email || !password || !phone || !address) {
             res.json({
                 status: "Something is worng",
@@ -231,6 +268,8 @@ const Getallusers = async (req, res) => {
 //     }
 // };
 
+
+
 //=========================================================Geting Data====================================================================>
 
 
@@ -251,6 +290,7 @@ const UpdateRole = async (req, res,) => {
         }
 
 
+
         if (!Role) {
             res.json(
                 {
@@ -267,7 +307,7 @@ const UpdateRole = async (req, res,) => {
 
         const UpdateRoles = await prisma.Users.update({
             where: {
-                UserID
+                UserID: parseInt()
             },
 
             data: {
