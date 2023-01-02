@@ -124,6 +124,7 @@ const DeleteCarts = async (req, res,) => {
     })
 }
 //=============================================================================>>Get Allcarts
+
 const GetallCarts = async (req, res) => {
     try {
         const Carting = await prisma.cart.findMany();
@@ -134,6 +135,9 @@ const GetallCarts = async (req, res) => {
         console.log(error)
     }
 };
+
+
+
 module.exports = {
     createcart,
     UpdateCarts,
