@@ -9,6 +9,27 @@ const CreateCategory = async (req, res) => {
     try {
         const { typ, } = req.body;
 
+
+
+        const Checktype = await prisma.Category.findFirst({
+            where: {
+                type: typ,
+            }
+        })
+
+
+        if (Checktype) {
+            res.json({
+                status: "Error",
+                message: "Type Is Already Save In Database"
+            })
+
+            return
+        }
+
+
+
+
         if (!typ) {
             res.json({
                 status: "Something is worng",
@@ -92,7 +113,7 @@ const UpdateCategory = async (req, res, next) => {
         }
 
 
-      
+
 
         const updateusers = await prisma.Category.update({
             where: {
@@ -169,7 +190,7 @@ const GetallCategory = async (req, res) => {
 
 
 const Deletecategry = async (req, res,) => {
-    
+
     try {
 
 
@@ -181,7 +202,7 @@ const Deletecategry = async (req, res,) => {
             })
             return;
         }
-        
+
 
 
         const { cat_ID } = req.params;
