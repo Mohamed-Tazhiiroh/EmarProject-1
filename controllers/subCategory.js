@@ -164,7 +164,22 @@ const Getonesubcategory = async (req, res) => {
 }
 //=========================================================>>Deletesubcategory
 const Deletesubcatgory = async (req, res,) => {
+
+
+
+
+    if (req.Users.Role !== "Admin") {
+        res.json({
+            status: "Error",
+            message: "You are not allowed"
+        })
+        return;
+    }
+
+
+
     const { SubID } = req.params;
+
 
     const SubCATE = await prisma.SubCategory.delete({
         where: {

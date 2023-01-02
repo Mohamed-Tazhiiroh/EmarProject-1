@@ -138,8 +138,14 @@ const UpdateCategory = async (req, res, next) => {
     }
 };
 
+
+
+
+
+
+
 //==========================================================>>GetOneCategory
-//
+
 
 const GetOneCAte = async (req, res) => {
     try {
@@ -168,6 +174,10 @@ const GetOneCAte = async (req, res) => {
 
 //==========================================================>>GetallCategory
 
+
+
+
+
 const GetallCategory = async (req, res) => {
     try {
         const Geting = await prisma.Category.findMany();
@@ -195,7 +205,8 @@ const Deletecategry = async (req, res,) => {
     try {
 
 
-
+        
+        //========================================================CheckRoles
         if (req.Users.Role !== "Admin") {
             res.json({
                 status: "Error",
@@ -203,7 +214,6 @@ const Deletecategry = async (req, res,) => {
             })
             return;
         }
-
 
 
         const { cat_ID } = req.params;
@@ -222,12 +232,6 @@ const Deletecategry = async (req, res,) => {
         console.log(error)
     }
 }
-
-
-
-
-
-
 
 
 

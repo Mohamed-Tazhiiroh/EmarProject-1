@@ -189,6 +189,21 @@ const Getproduct = async (req, res) => {
 //====================================================>>Deleteproduct
 
 const Deletepro = async (req, res,) => {
+
+
+
+    //========================================================CheckRoles
+    if (req.Users.Role !== "Admin") {
+        res.json({
+            status: "Error",
+            message: "You are not allowed"
+        })
+        return;
+    }
+
+
+
+
     const { Pro_id } = req.params;
 
     const Pro = await prisma.products.delete({

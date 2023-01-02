@@ -307,7 +307,7 @@ const UpdateRole = async (req, res,) => {
 
         const UpdateRoles = await prisma.Users.update({
             where: {
-                UserID: parseInt()
+                UserID
             },
 
             data: {
