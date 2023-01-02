@@ -172,12 +172,15 @@ const Getproduct = async (req, res) => {
             Getallproducts
         });
     } catch (error) {
+        console.log(error)
         res.json({
             status: "Error",
             message: "Data is not Found"
         });
     }
 };
+
+
 
 
 

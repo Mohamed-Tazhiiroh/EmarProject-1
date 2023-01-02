@@ -257,6 +257,9 @@ const Getallusers = async (req, res) => {
     }
 };
 
+
+
+
 // const DeleteAll = async (req, res) => {
 //     try {
 //         await prisma.Users.deleteMany();
@@ -275,11 +278,17 @@ const Getallusers = async (req, res) => {
 
 
 //=======================================================================================================================================>>
+
+
+
+
+
 const UpdateRole = async (req, res,) => {
     try {
         const { UserID, Role } = req.body;
 
-        console.log(req.Users)
+
+
 
         if (req.Users.Role !== "Admin") {
             res.json({
@@ -290,7 +299,7 @@ const UpdateRole = async (req, res,) => {
         }
 
 
-
+        
         if (!Role) {
             res.json(
                 {
@@ -298,12 +307,9 @@ const UpdateRole = async (req, res,) => {
                     message: "Fadlan Ku dar Role ka || plze add to role"
                 })
 
-
             return;
 
-
         }
-
 
         const UpdateRoles = await prisma.Users.update({
             where: {
@@ -324,6 +330,13 @@ const UpdateRole = async (req, res,) => {
         console.log(error)
     }
 }
+
+
+
+
+
+
+
 
 
 //=========================================================Exports=======================================================================>
