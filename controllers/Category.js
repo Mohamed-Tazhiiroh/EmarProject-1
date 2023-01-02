@@ -184,6 +184,7 @@ const GetallCategory = async (req, res) => {
 
 
 
+
 //==========================================================>>Deletecategory
 
 

@@ -9,6 +9,25 @@ const createsubcategory = async (req, res) => {
         const { sub_name, img, CAtID } = req.body;
 
 
+        CheckSubname = await prisma.SubCategory.findFirst({
+            where: {
+                Sub_name: sub_name
+            },
+        });
+
+
+
+
+        if (CheckSubname) {
+            res.json({
+                status: "Error",
+                message: "SubCategory Is Exist In DataBase"
+            })
+        }
+
+
+
+
         if (!sub_name || !img || !CAtID) {
             res.json({
                 status: "Something is worng",
