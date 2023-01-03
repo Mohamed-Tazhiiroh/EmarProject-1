@@ -4,7 +4,7 @@ const Reviews = require('../controllers/Reaviwes')
 
 
 router.post('/Newreviews', Reviews.CreateRive)
-router.put('/Update', Reviews.UpdateReviws)
+router.put('/Update/:Rev_id', Reviews.UpdateReviws)
 
 
 
