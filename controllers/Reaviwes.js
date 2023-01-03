@@ -156,6 +156,20 @@ const DeleteReviws = async (req, res,) => {
 }
 
 
+//==========================================================================>>GetallReviws
+
+const Getallreviws = async (req, res) => {
+    try {
+        const Allreviws = await prisma.Reviews.findMany();
+        res.json({
+            Allreviws
+        });
+    } catch (error) {
+        console.log(error)
+    }
+};
+
+
 
 
 
@@ -163,5 +177,6 @@ module.exports = {
     CreateRive,
     UpdateReviws,
     getoneReviws,
-    DeleteReviws
+    DeleteReviws,
+    Getallreviws
 }
