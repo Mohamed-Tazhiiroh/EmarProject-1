@@ -17,10 +17,16 @@ const CreateOders = async (req, res, next) => {
         };
 
 
+
+        const Delivery_Price = 0.15 * Item_price
+
+        console.log(Delivery_Price)
+
+
         const NewOders = await prisma.Oreds.create({
             data: {
-                Delivery_price: D_price,
                 Item_price: Item_price,
+                Delivery_price: D_price,
                 total_price: Total_price,
                 address: Address,
                 Item_name: itemname,
@@ -48,12 +54,19 @@ const CreateOders = async (req, res, next) => {
     }
 }
 
+
+
+
+
+
+
+
 //====================================================================>>UpdateOders
 const UpdateOrders = async (req, res, next) => {
     try {
         const { Address, itemname, qtity } = req.body;
         const { Ored_id } = req.params
-        if ( !Address || !itemname || !qtity) {
+        if (!Address || !itemname || !qtity) {
             res.json({
                 status: "Erorr",
                 message: "please checking Data "
@@ -77,7 +90,7 @@ const UpdateOrders = async (req, res, next) => {
                 Ored_id: parseInt(Ored_id)
             },
             data: {
-            
+
                 address: Address,
                 Item_name: itemname,
                 Item_quantity: qtity
@@ -92,6 +105,12 @@ const UpdateOrders = async (req, res, next) => {
         console.log(error)
     }
 };
+
+
+
+
+
+
 
 //=====================================================================>>GetAllorders
 
@@ -109,6 +128,11 @@ const Getallorders = async (req, res) => {
         });
     }
 };
+
+
+
+
+
 
 
 //========================================================================>>GetoneOrders
@@ -136,6 +160,12 @@ const Getoneorders = async (req, res) => {
         console.log(error)
     };
 }
+
+
+
+
+
+
 
 
 

@@ -16,6 +16,8 @@ const oders = require('./Routers/OderRoutes')
 const SubcatE = require('./Routers/SubcategoryRouter')
 //=================================================================>Cart Route
 const routecart = require('./Routers/cartRoute')
+//=================================================================>>Reviwes
+const Reviews = require('./Routers/ReviRoute')
 
 
 //=================================================================>User api
@@ -30,6 +32,8 @@ app.use('/api/order', oders)
 app.use('/api/Subcate', SubcatE)
 //=================================================================>cart api
 app.use('/api/cart', routecart)
+//=================================================================>Reviews
+app.use('/api/ReCre', Reviews)
 
 
 
