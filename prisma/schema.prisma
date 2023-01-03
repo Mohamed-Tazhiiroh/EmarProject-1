@@ -104,7 +104,7 @@ model products {
   UserID     Int
   SubID      Int
   user       Users       @relation(fields: [UserID], references: [UserID])
-  Cat        SubCategory @relation(fields: [SubID], references: [SubID])
+  SubCate        SubCategory @relation(fields: [SubID], references: [SubID])
   car        cart[]
   reviwe     Reviews[]
 }

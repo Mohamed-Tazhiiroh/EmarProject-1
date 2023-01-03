@@ -38,7 +38,7 @@ const CreateProduct = async (req, res) => {
                 UserID: req.Users.UserID
             },
             include: {
-                Cat: true,
+                SubCate: true,
                 user: true
             }
         });

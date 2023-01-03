@@ -10,6 +10,15 @@ const generatetToken = (Users) => {
     })
 }
 
+
+
+
+
+
+
+
+
+
 //==========================Registertion start============================>
 
 
@@ -76,11 +85,7 @@ const Registertion = async (req, res) => {
                 Role: email === "cabdiraxmaanxikam190gmail.com" ? "supperadmin" : "user"
             },
         });
-        // res.json({
-        //     status: "Success",
-        //     message: "Sucessfully save",
-        //     Newuser
-        // })
+
         const token = generatetToken(Newuser.UserID)
         res.json({
             user: { ...Newuser },
@@ -93,6 +98,14 @@ const Registertion = async (req, res) => {
 
 
 };
+
+
+
+
+
+
+
+
 
 //=========================================================Loging=========================================================================>
 
@@ -226,6 +239,13 @@ const GetOneuser = async (req, res) => {
     };
 }
 
+
+
+
+
+
+
+
 //=========================================================Delete Users===================================================================>
 const DeleteUser = async (req, res,) => {
     const { UserID } = req.params;
@@ -260,20 +280,27 @@ const Getallusers = async (req, res) => {
 
 
 
-// const DeleteAll = async (req, res) => {
-//     try {
-//         await prisma.Users.deleteMany();
-//         res.json({
-//             message: 'All posts were delete',
-//         });
-//     } catch (error) {
-//         console.log(error)
-//     }
-// };
 
 
 
-//=========================================================Geting Data====================================================================>
+
+
+
+
+
+
+const DeleteAll = async (req, res) => {
+    try {
+        await prisma.Users.deleteMany();
+        res.json({
+            message: 'All posts were delete',
+        });
+    } catch (error) {
+        console.log(error)
+    }
+};
+
+
 
 
 
@@ -284,10 +311,11 @@ const Getallusers = async (req, res) => {
 
 
 const UpdateRole = async (req, res,) => {
+
+    const { Role } = req.body;
     try {
-        const { UserID, Role } = req.body;
 
-
+        const { UserID } = req.params;
 
 
         if (req.Users.Role !== "Admin") {
@@ -299,7 +327,7 @@ const UpdateRole = async (req, res,) => {
         }
 
 
-        
+
         if (!Role) {
             res.json(
                 {
@@ -313,7 +341,7 @@ const UpdateRole = async (req, res,) => {
 
         const UpdateRoles = await prisma.Users.update({
             where: {
-                UserID
+                UserID: +UserID,
             },
 
             data: {
@@ -321,13 +349,20 @@ const UpdateRole = async (req, res,) => {
                 UserID: req.Users.UserID
             }
         });
+
+
         res.json({
             status: "Success",
             message: "Updated Role Successfuly",
             UpdateRoles
         })
+
     } catch (error) {
         console.log(error)
+        res.json({
+            status: "Error",
+            message: "reject Req"
+        })
     }
 }
 
@@ -349,5 +384,5 @@ module.exports = {
     DeleteUser,
     UpdateUser,
     UpdateRole,
-    // DeleteAll
+    DeleteAll
 }

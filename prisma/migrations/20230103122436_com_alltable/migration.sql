@@ -75,7 +75,7 @@ CREATE TABLE "Reviews" (
     "Rev_id" SERIAL NOT NULL,
     "rating" INTEGER NOT NULL,
     "body" TEXT,
-    "user_id" INTEGER NOT NULL,
+    "UserID" INTEGER NOT NULL,
     "pro_id" INTEGER NOT NULL,
     "createat" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
@@ -132,7 +132,7 @@ ALTER TABLE "products" ADD CONSTRAINT "products_UserID_fkey" FOREIGN KEY ("UserI
 ALTER TABLE "products" ADD CONSTRAINT "products_SubID_fkey" FOREIGN KEY ("SubID") REFERENCES "SubCategory"("SubID") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Reviews" ADD CONSTRAINT "Reviews_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "Users"("UserID") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "Reviews" ADD CONSTRAINT "Reviews_UserID_fkey" FOREIGN KEY ("UserID") REFERENCES "Users"("UserID") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Reviews" ADD CONSTRAINT "Reviews_pro_id_fkey" FOREIGN KEY ("pro_id") REFERENCES "products"("Pro_id") ON DELETE RESTRICT ON UPDATE CASCADE;
