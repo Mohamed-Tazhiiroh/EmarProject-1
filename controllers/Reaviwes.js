@@ -2,6 +2,8 @@ const { PrismaClient } = require('@prisma/client')
 const prisma = new PrismaClient();
 
 
+//===========================================================================>> CreateRivews
+
 const CreateRive = async (req, res) => {
     const { productID, userid, Rating, reaction } = req.body;
 
@@ -45,6 +47,12 @@ const CreateRive = async (req, res) => {
 
 }
 
+
+
+
+
+
+//===========================================================================>> updateReviws
 
 const UpdateReviws = async (req, res, next) => {
     try {
@@ -99,6 +107,34 @@ const UpdateReviws = async (req, res, next) => {
 
 
 
+//=================================================================================>>getone Reviwes
+
+
+const getoneReviws = async (req, res) => {
+    try {
+        const { Rev_id } = req.params;
+        const Reaviwe = await prisma.Reviews.findFirst({
+            where: {
+                Rev_id: +Rev_id,
+            },
+        });
+        if (!Reaviwe) {
+            res.json({
+                status: "Erorr",
+                message: "Cart is not fount in Database Now"
+            });
+        } else {
+            res.json({
+                status: "Success",
+                Reaviwe
+            })
+        }
+    } catch (error) {
+        res.json({
+            Error
+        });
+    };
+}
 
 
 
@@ -107,5 +143,6 @@ const UpdateReviws = async (req, res, next) => {
 
 module.exports = {
     CreateRive,
-    UpdateReviws
+    UpdateReviws,
+    getoneReviws
 }
