@@ -18,15 +18,15 @@ const CreateOders = async (req, res, next) => {
 
 
 
-        const Delivery_Price = 0.15 * Item_price
+        // const Delivery_Price = 0.15 * Item_price
 
-        console.log(Delivery_Price)
+        // console.log(Delivery_Price)
 
 
         const NewOders = await prisma.Oreds.create({
             data: {
                 Item_price: Item_price,
-                Delivery_price: D_price,
+                Delivery_price: 0.5*Total_price,
                 total_price: Total_price,
                 address: Address,
                 Item_name: itemname,
