@@ -139,10 +139,29 @@ const getoneReviws = async (req, res) => {
 
 
 
+//============================================================================>>Delete reviws
+const DeleteReviws = async (req, res,) => {
+    const { Rev_id } = req.params;
+
+    const Revis = await prisma.Reviews.delete({
+        where: {
+            Rev_id: parseInt(Rev_id)
+        },
+    });
+    res.json({
+        status: "Success",
+        message: "Carts Delete SuccessFull!",
+       Revis
+    })
+}
+
+
+
 
 
 module.exports = {
     CreateRive,
     UpdateReviws,
-    getoneReviws
+    getoneReviws,
+    DeleteReviws
 }
