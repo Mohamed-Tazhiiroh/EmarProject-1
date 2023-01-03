@@ -150,8 +150,8 @@ const DeleteReviws = async (req, res,) => {
     });
     res.json({
         status: "Success",
-        message: "Carts Delete SuccessFull!",
-       Revis
+        message: "Reviws Delete SuccessFull!",
+        Revis
     })
 }
 
